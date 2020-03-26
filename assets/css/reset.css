@@ -1,0 +1,22 @@
+/* ########## GOOGLE FONTS ########## */
+@import url("https://fonts.googleapis.com/css?family=Aguafina+Script|Fira+Sans:100,100i,400,400i,700,700i,900,900i|Poppins:100,100i,400,400i,700,700i,900,900i|Tulpen+One&display=swap");
+* {-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr,acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var  b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th,  d,  article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button 
+{
+  margin: 0;
+  padding: 0;
+  }
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+.main-wrapper-container {
+  width: 0 auto;
+}
+
+img {
+  max-width: 100%;
+}
