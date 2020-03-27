@@ -10,46 +10,56 @@
 
 
 // Version 1.00
-// Simple input acceptance from user
-
+// Simple input acceptance from user, then use translateOurQuote to display the translation
+// EXS 26th MArch 2020
 
 $(document).ready(function () {
 
-    const cockneyURL="https://api.funtranslations.com/translate/cockney.json?text=";
+    const baseURL="https://api.funtranslations.com/translate/"
+    const cockneyURL="cockney.json?text=";
+    const pirateURL="pirate.json?text=";
+
     var randomQuote = ""
 
     $("#getRandomQuote").click(function () {
         console.log ("Getting a random Quote");
         $.ajax ({
             url: "https://favqs.com/api/qotd"
-            //method: "GET"
         }) .then (function (response) {
-            console.log (response);
             randomQuote = (response.quote.body);
-            //console.log (randomQuote);
             $('#randomQuote').text(randomQuote);
         });
         
+        // This should really be a drop down, it'll be easier to expand in future
         $("#pirateTranslation").click(function () {
-            console.log ("Pirate Selected");
+            var fullPirateURL=baseURL+pirateURL
+            translateOurQuote(randomQuote,fullPirateURL);
         })
             
         $("#cockneyTranslation").click(function () {
-            console.log ("Cockney Translation");
-            console.log (cockneyURL);
-            var fullCockneyURL=cockneyURL+randomQuote;
-            console.log (fullCockneyURL);
-            // https://api.funtranslations.com/translate/cockney.json?text=I%27m%20little%20busy%20with%20the%20bike%2C%20but%20I%20love%20to%20eat%20the%20food.
-            $.ajax ({
-                url: fullCockneyURL
-            }) .then (function (response) {
-                console.log(response);
-                console.log(response.contents.translated);
-                $("#translated").text(response.contents.translated);
-            })
-        })
+            var fullCockneyURL=baseURL+cockneyURL
+            translateOurQuote(randomQuote, fullCockneyURL);
+           })
     
 
+
+
+
+
+
+        // This function allows us to pass the quote and create an API URL for fun translations
+        //  EXS 27th March 2020
+        function translateOurQuote (randomQuote, translateURL) {
+            console.log (randomQuote, translateURL);
+            myQuote=encodeURI(randomQuote);
+            myURL= translateURL+myQuote;
+            //console.log ("My URL is: ",myURL);
+            $.ajax ({
+                url: myURL
+            }) .then (function (response) {
+                $("#translated").text(response.contents.translated);
+            })
+        }
     });
 
 
