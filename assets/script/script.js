@@ -66,6 +66,14 @@ $(document).ready(function () {
         }
 
 
+        // function psuedo
+            // get translateCounterDiv - should be the current count
+            // const translationsPerHour = 5 -> Top of the code> Under ready?
+            // if translaterCounterDiv < translationsPerHour
+                //Then update the translateCounterDiv by 1
+                //Update the number on screen?
+
+            
         // Translator Counter
         var translateCounterDiv = $("#translateCounter");
         var translateCount = 0;
