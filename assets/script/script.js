@@ -25,6 +25,7 @@ $(document).ready(function () {
         $.ajax ({
             url: "https://favqs.com/api/qotd"
         }) .then (function (response) {
+            console.log(response);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
@@ -51,6 +52,7 @@ $(document).ready(function () {
             $.ajax ({
                 url: myURL
             }) .then (function (response) {
+                console.log (response);
                 $("#translated").text(response.contents.translated);
             })
         }
