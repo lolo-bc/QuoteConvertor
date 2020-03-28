@@ -21,6 +21,8 @@ $(document).ready(function () {
 
     var randomQuote = ""
 
+    var translatePerformed;
+
     $("#getRandomQuote").click(function () {
         $.ajax({
             url: "https://favqs.com/api/qotd"
@@ -57,9 +59,9 @@ $(document).ready(function () {
         // Translator Counter
         var translateCounterDiv = $("#translateCounter");
         var translateCount = 0;
-        var translate
-        if (translatesPerformed > 1) {
-            translate++;
+
+        if (translatePerformed === true) {
+            translateCount++;
             translateCounterDiv.text(translateCount);
         };
     });
