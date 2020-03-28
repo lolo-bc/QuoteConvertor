@@ -15,10 +15,13 @@
 
 $(document).ready(function () {
 
-    const baseURL = "https://api.funtranslations.com/translate/"
-    const cockneyURL = "cockney.json?text=";
-    const pirateURL = "pirate.json?text=";
 
+    $('.dropdown-trigger').dropdown();
+    const baseURL="https://api.funtranslations.com/translate/"
+    const cockneyURL="cockney.json?text=";
+    const pirateURL="pirate.json?text=";
+
+    
     var randomQuote = ""
 
     var translatePerformed;
@@ -43,9 +46,13 @@ $(document).ready(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
         })
+<<<<<<< HEAD
 
 
 
+=======
+     
+>>>>>>> master
 
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
@@ -68,6 +75,14 @@ $(document).ready(function () {
         }
 
 
+        // function psuedo
+            // get translateCounterDiv - should be the current count
+            // const translationsPerHour = 5 -> Top of the code> Under ready?
+            // if translaterCounterDiv < translationsPerHour
+                //Then update the translateCounterDiv by 1
+                //Update the number on screen?
+
+            
         // Translator Counter
         var translateCounterDiv = $("#translateCounter");
         var translateCount = 0;
