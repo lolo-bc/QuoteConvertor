@@ -21,7 +21,7 @@ $(document).ready(function () {
     const cockneyURL="cockney.json?text=";
     const pirateURL="pirate.json?text=";
 
-
+    
     var randomQuote = ""
 
     $("#getRandomQuote").click(function () {
