@@ -2,27 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Calistoga&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <title>Document</title>
 </head>
 <body>
-    
-    <h1> Quote Convertor</h1> <br><hr>
-    
-    <!-- Get random quote button -->
-    <button id="getRandomQuote">Get Quote</button><br>
-    <textarea id="randomQuote" rows="6" cols="50">Our returned quote goes here</textarea>
-    <br><br>
+    <div class="container">
 
-    <h1>Please pick your conversion...</h1>
-    <button id="pirateTranslation">Pirate</button>
-    <button id="cockneyTranslation">Cockney</button>
-    <br><br>
-    <textarea id="translated" rows="6" cols="50"></textarea>
-    <p> doing something so i can push</p>
+        <div class="row">
+        <div class="card-panel deep-purple lighten-1">
+        <h1 > Quote Convertor</h1> 
+        </div>
+
+        <div class="divider"></div>
+
+
+        </div>
+        <!-- Get random quote button -->
+        <div  id="quoteRow" class="row deep-purple lighten-2">
+            <h4>Type in your text or <button id="getRandomQuote"> Get Quote</button><br></h4>
+            <textarea id="randomQuote"></textarea>
+            <br><br>
+        </div>
+
+        <div id="convertedTextArea" class="row deep-purple lighten-3">
+            <h4>Please a language to translate your quote into</h4>
+            <button id="pirateTranslation">Pirate</button>
+            <button id="cockneyTranslation">Cockney</button>
+
+        <div class="input-field">
+            <select>
+              <option value="">Choose your option</option>
+              <option id="pirateTranslation">Pirate</option>
+              <option id="cockneyTranslation">Cockney</option>
+              <option value="3">Option 3</option>
+            </select>
+          </div>
+
+
+            
+
+
+            <div id="translated" ></div>
+        </div>
+
+
+    </div>
 
     <!-- Include a link to our JQuery and JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
