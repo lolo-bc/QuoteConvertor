@@ -15,9 +15,12 @@
 
 $(document).ready(function () {
 
-    const baseURL = "https://api.funtranslations.com/translate/"
-    const cockneyURL = "cockney.json?text=";
-    const pirateURL = "pirate.json?text=";
+
+    $('.dropdown-trigger').dropdown();
+    const baseURL="https://api.funtranslations.com/translate/"
+    const cockneyURL="cockney.json?text=";
+    const pirateURL="pirate.json?text=";
+
 
     var randomQuote = ""
 
@@ -41,9 +44,7 @@ $(document).ready(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
         })
-
-
-           
+     
 
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
