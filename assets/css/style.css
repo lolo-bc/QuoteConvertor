@@ -14,6 +14,10 @@ body {
     text-align: right;
 }
 
+#title{
+    padding-bottom: 20px;
+}
+
 #quoteRow {
     padding: 10px;
 }
