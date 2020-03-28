@@ -22,7 +22,6 @@ $(document).ready(function () {
     var randomQuote = ""
 
     $("#getRandomQuote").click(function () {
-        console.log ("Getting a random Quote");
         $.ajax ({
             url: "https://favqs.com/api/qotd"
         }) .then (function (response) {
@@ -42,18 +41,12 @@ $(document).ready(function () {
            })
     
 
-
-
-
-
-
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         function translateOurQuote (randomQuote, translateURL) {
-            console.log (randomQuote, translateURL);
+            //console.log (randomQuote, translateURL);
             myQuote=encodeURI(randomQuote);
             myURL= translateURL+myQuote;
-            //console.log ("My URL is: ",myURL);
             $.ajax ({
                 url: myURL
             }) .then (function (response) {
