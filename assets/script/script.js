@@ -42,6 +42,8 @@ $(document).ready(function () {
            })
     
 
+           
+
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
@@ -54,7 +56,22 @@ $(document).ready(function () {
             }) .then (function (response) {
                 console.log (response);
                 $("#translated").text(response.contents.translated);
+                // After translation call the attributeSites function
+                // This may need expanding with the type of translation performed
+                atrributeSites();
             })
+        }
+
+        function atrributeSites() {
+            // This function will display the attribute links required for API access
+            // EXS msaunders.eddie@outlook.com 28th MArch 2020
+            // convertedType would be the pirate, cockney, yoda etc...
+
+            const funTranslationsAPI = "https://www.funtranslations.com";
+            const quoteAPI = "https://https://favqs.com/api/qotd"
+
+            console.log("attributed sites");
+            
         }
     });
 
