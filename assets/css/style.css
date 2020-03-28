@@ -16,7 +16,7 @@ body {
     color: #311b92;
     font-family: 'Calistoga', cursive;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
     height: 4em;
     min-height: 100%;
 }
@@ -32,4 +32,14 @@ body {
 #convertedTextArea {
     height: 100vh;
     padding: 10px;
+}
+
+.btn, .btn-large {
+    background-color:#311b92 !important;
+}
+
+.dropdown-content {
+    color: #311b92 ;
+    padding-left: 5px;
+    text-align: center;
 }

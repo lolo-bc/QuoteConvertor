@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
+     <!-- Materialize Links -->
+    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -33,21 +39,20 @@
 
         <div id="convertedTextArea" class="row deep-purple lighten-3">
             <h4>Please a language to translate your quote into</h4>
-            <button id="pirateTranslation">Pirate</button>
-            <button id="cockneyTranslation">Cockney</button>
+            <!-- <button id="pirateTranslation">Pirate</button>
+            <button id="cockneyTranslation">Cockney</button> -->
 
-        <div class="input-field">
-            <select>
-              <option value="">Choose your option</option>
-              <option id="pirateTranslation">Pirate</option>
-              <option id="cockneyTranslation">Cockney</option>
-              <option value="3">Option 3</option>
-            </select>
-          </div>
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose a language</a>
 
-
-            
-
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li id="pirateTranslation">Pirate</li>
+                <li id="cockneyTranslation">Cockney</li>
+                <li class="divider" tabindex="-1"></li>
+                <li>placeholder</li>
+                <li>placeholder</li>
+            </ul>
 
             <div id="translated" ></div>
         </div>
@@ -55,7 +60,14 @@
 
     </div>
 
+
+
+
     <!-- Include a link to our JQuery and JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+       <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="assets/script/materialize.min.js"></script>
     <script src="./assets/script/script.js"></script>
+
+  
 </html>

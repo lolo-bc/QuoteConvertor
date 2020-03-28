@@ -15,6 +15,9 @@
 
 $(document).ready(function () {
 
+    $('.dropdown-trigger').dropdown();
+    
+
     const baseURL="https://api.funtranslations.com/translate/"
     const cockneyURL="cockney.json?text=";
     const pirateURL="pirate.json?text=";
