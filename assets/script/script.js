@@ -15,16 +15,31 @@
 
 $(document).ready(function () {
 
+    var translationsPerHour = 5;
+
 
     $('.dropdown-trigger').dropdown();
-    const baseURL="https://api.funtranslations.com/translate/"
-    const cockneyURL="cockney.json?text=";
-    const pirateURL="pirate.json?text=";
+    const baseURL = "https://api.funtranslations.com/translate/"
+    const cockneyURL = "cockney.json?text=";
+    const pirateURL = "pirate.json?text=";
 
-    
+
     var randomQuote = ""
 
-    var translatePerformed;
+    function translatorCountFunction() {
+        // const translationsPerHour = 5 -> Top of the code> Under ready?
+        // if translaterCounterDiv < translationsPerHour
+        //Then update the translateCounterDiv by 1
+        //Update the number on screen?
+        if (translationsPerHour === 0) {
+            return false;
+        }
+        else {
+            translationsPerHour--;
+            $("#translateCounter").text(translationsPerHour);
+        }
+
+    };
 
     $("#getRandomQuote").click(function () {
         $.ajax({
@@ -40,19 +55,14 @@ $(document).ready(function () {
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL
             translateOurQuote(randomQuote, fullPirateURL);
-        })
+            translatorCountFunction();
+        });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
-        })
-<<<<<<< HEAD
-
-
-
-=======
-     
->>>>>>> master
+            translatorCountFunction();
+        });
 
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
@@ -72,25 +82,8 @@ $(document).ready(function () {
                 atrributeSites();
                 translatePerformed = true;
             })
-        }
-
-
-        // function psuedo
-            // get translateCounterDiv - should be the current count
-            // const translationsPerHour = 5 -> Top of the code> Under ready?
-            // if translaterCounterDiv < translationsPerHour
-                //Then update the translateCounterDiv by 1
-                //Update the number on screen?
-
-            
-        // Translator Counter
-        var translateCounterDiv = $("#translateCounter");
-        var translateCount = 0;
-
-        if (translatePerformed === true) {
-            translateCount++;
-            translateCounterDiv.text(translateCount);
         };
+
 
         function atrributeSites() {
             // This function will display the attribute links required for API access
