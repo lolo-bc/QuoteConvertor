@@ -26,12 +26,11 @@ $(document).ready(function () {
 
     var randomQuote = ""
 
-
+    // T.W. 3/29
+    // Function To Count Each Translate
     function translatorCountFunction() {
-        // if translaterCounterDiv < translationsPerHour
-        //Then update the translateCounterDiv by 1
-        //Update the number on screen?
         if (translationsPerHour === 0) {
+            countDown();
             return false;
         }
         else {
@@ -40,8 +39,19 @@ $(document).ready(function () {
         }
     };
 
-    setInterval(function () { $("#translateCounter").text(5); }, 3600000);
-
+    // T.W. 3/30
+    // Resets Translates To 5 After One Hour
+    function countDown() {
+        var counter = 3600;
+        var oneHourCountDown = setInterval(function () {
+            console.log("CountDown: " + counter);
+            counter--
+            if (counter === 0) {
+                clearInterval(oneHourCountDown);
+                $("#translateCounter").text(5);
+            }
+        }, 1000);
+    };
 
     $("#getRandomQuote").click(function () {
         $.ajax({
