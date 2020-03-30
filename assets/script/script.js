@@ -13,16 +13,44 @@
 
 $(document).ready(function () {
 
+    var translationsPerHour = 5;
 
     $('.dropdown-trigger').dropdown();
+
     const baseURL="https://api.funtranslations.com/translate/"
     const cockneyURL="cockney.json?text=";
     const pirateURL="pirate.json?text=";
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
 
-    
     var randomQuote = ""
+
+    // T.W. 3/29
+    // Function To Count Each Translate
+    function translatorCountFunction() {
+        if (translationsPerHour === 0) {
+            countDown();
+            return false;
+        }
+        else {
+            translationsPerHour--;
+            $("#translateCounter").text(translationsPerHour);
+        }
+    };
+
+    // T.W. 3/30
+    // Resets Translates To 5 After One Hour
+    function countDown() {
+        var counter = 3600;
+        var oneHourCountDown = setInterval(function () {
+            console.log("CountDown: " + counter);
+            counter--
+            if (counter === 0) {
+                clearInterval(oneHourCountDown);
+                $("#translateCounter").text(5);
+            }
+        }, 1000);
+    };
 
     $("#getRandomQuote").click(function () {
         $.ajax({
@@ -39,27 +67,32 @@ $(document).ready(function () {
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
             translateOurQuote(randomQuote, fullPirateURL);
+            translatorCountFunction();
         });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
+            translatorCountFunction();
         });
-
+      
+        // EXS Added in translator Count calls
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL+chefURL;
             translateOurQuote(randomQuote, fullChefURL);
+            translatorCountFunction();
         });
 
         $("oldEnglishTranslation").click (function () {
             var full oldEnglishUrl=baseURL+oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
-        })
+             translatorCountFunction();
+        });
  
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
-        function translateOurQuote (randomQuote, translateURL) {
+        function translateOurQuote(randomQuote, translateURL) {
             //console.log (randomQuote, translateURL);
             myQuote = encodeURI(randomQuote);
             myURL = translateURL + myQuote;
@@ -67,11 +100,12 @@ $(document).ready(function () {
                 url: myURL
 
             }).then(function (response) {
-                console.log (response);
+                console.log(response);
                 $("#translated").text(response.contents.translated);
                 // After translation call the attributeSites function
                 // This may need expanding with the type of translation performed
                 atrributeSites();
+                translatePerformed = true;
             })
         }
 
@@ -98,9 +132,8 @@ $(document).ready(function () {
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://https://favqs.com/api/qotd"
-
             console.log("attributed sites");
-            
+
         }
 
     });
