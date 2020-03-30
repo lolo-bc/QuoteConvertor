@@ -26,8 +26,8 @@ $(document).ready(function () {
 
     var randomQuote = ""
 
+
     function translatorCountFunction() {
-        // const translationsPerHour = 5 -> Top of the code> Under ready?
         // if translaterCounterDiv < translationsPerHour
         //Then update the translateCounterDiv by 1
         //Update the number on screen?
@@ -38,8 +38,10 @@ $(document).ready(function () {
             translationsPerHour--;
             $("#translateCounter").text(translationsPerHour);
         }
-
     };
+
+    setInterval(function () { $("#translateCounter").text(5); }, 3600000);
+
 
     $("#getRandomQuote").click(function () {
         $.ajax({
