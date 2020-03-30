@@ -7,8 +7,6 @@
 
 // Potential issues are the face we only have 5 hits per hour using funtranslations.com
 
-
-
 // Version 1.00
 // Simple input acceptance from user, then use translateOurQuote to display the translation
 // EXS 26th MArch 2020
@@ -20,6 +18,8 @@ $(document).ready(function () {
     const baseURL="https://api.funtranslations.com/translate/"
     const cockneyURL="cockney.json?text=";
     const pirateURL="pirate.json?text=";
+    const chefURL = "chef.json?text=";
+    const oldEnglishURL = "oldenglish.json?text=";
 
     
     var randomQuote = ""
@@ -36,14 +36,26 @@ $(document).ready(function () {
 
         // This should really be a drop down, it'll be easier to expand in future
         $("#pirateTranslation").click(function () {
-            var fullPirateURL = baseURL + pirateURL
+            var fullPirateURL = baseURL + pirateURL;
             translateOurQuote(randomQuote, fullPirateURL);
-        })
+        });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
+        });
+
+        $("#chefTranslation").click(function () {
+            var fullChefURL = baseURL+chefURL;
+            translateOurQuote(randomQuote, fullChefURL);
+        });
+
+        $("oldEnglishTranslation").click (function () {
+            var full oldEnglishUrl=baseURL+oldEnglishURL;
+            translateOurQuote(randomQuote, fullOldEnglishURL);
         })
+        
+       
      
 
         // This function allows us to pass the quote and create an API URL for fun translations
@@ -85,7 +97,7 @@ $(document).ready(function () {
 
         function atrributeSites() {
             // This function will display the attribute links required for API access
-            // EXS msaunders.eddie@outlook.com 28th MArch 2020
+            // EXS msaunders.eddie@outlook.com 28th March 2020
             // convertedType would be the pirate, cockney, yoda etc...
 
             const funTranslationsAPI = "https://www.funtranslations.com";
