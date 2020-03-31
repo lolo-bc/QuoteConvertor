@@ -15,8 +15,8 @@ $(document).ready(function () {
 
     var translationsPerHour = 5;
 
-
     $('.dropdown-trigger').dropdown();
+
     const baseURL = "https://api.funtranslations.com/translate/"
     const cockneyURL = "cockney.json?text=";
     const pirateURL = "pirate.json?text=";
@@ -76,6 +76,7 @@ $(document).ready(function () {
             translatorCountFunction();
         });
 
+        // EXS Added in translator Count calls
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL + chefURL;
             translateOurQuote(randomQuote, fullChefURL);
@@ -86,7 +87,7 @@ $(document).ready(function () {
             var fulloldEnglishUrl = baseURL + oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
             translatorCountFunction();
-        })
+        });
 
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
@@ -104,10 +105,8 @@ $(document).ready(function () {
                 // After translation call the attributeSites function
                 // This may need expanding with the type of translation performed
                 atrributeSites();
-                translatePerformed = true;
             })
         };
-
 
         function atrributeSites() {
             // This function will display the attribute links required for API access
@@ -116,7 +115,6 @@ $(document).ready(function () {
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://https://favqs.com/api/qotd"
-
             console.log("attributed sites");
 
         }
