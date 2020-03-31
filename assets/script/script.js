@@ -115,7 +115,7 @@ $(document).ready(function () {
             // convertedType would be the pirate, cockney, yoda etc...
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
-            const quoteAPI = "https://https://favqs.com/api/qotd"
+            const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
         }
     });
