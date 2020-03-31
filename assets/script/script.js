@@ -84,9 +84,9 @@ $(document).ready(function () {
         });
 
         $("oldEnglishTranslation").click (function () {
-            var full oldEnglishUrl=baseURL+oldEnglishURL;
+            var fullOldEnglishURL=baseURL+oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
-             translatorCountFunction();
+            translatorCountFunction();
         });
  
         // This function allows us to pass the quote and create an API URL for fun translations
@@ -109,22 +109,6 @@ $(document).ready(function () {
             })
         }
 
-        // function psuedo
-            // get translateCounterDiv - should be the current count
-            // const translationsPerHour = 5 -> Top of the code> Under ready?
-            // if translaterCounterDiv < translationsPerHour
-                //Then update the translateCounterDiv by 1
-                //Update the number on screen?
-  
-        // Translator Counter
-        var translateCounterDiv = $("#translateCounter");
-        var translateCount = 0;
-        var translate
-        if (translatesPerformed > 1) {
-            translate++;
-            translateCounterDiv.text(translateCount);
-        };
-
         function atrributeSites() {
             // This function will display the attribute links required for API access
             // EXS msaunders.eddie@outlook.com 28th March 2020
@@ -133,10 +117,7 @@ $(document).ready(function () {
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://https://favqs.com/api/qotd"
             console.log("attributed sites");
-
         }
-
     });
-
     // End of jquery ready function    
 });
