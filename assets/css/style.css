@@ -34,6 +34,7 @@ body {
     font-size: 35px;
     height: 4em;
     min-height: 80%;
+    line-height: 35px;
 }
 
 #getRandomQuote {
@@ -62,13 +63,14 @@ body {
     padding: 0 auto;
 }
 
-
 #translated {
     padding: 20px;
     color: #00897b;
-    font-family: 'Girassol', cursive;
+    font-family: 'Big Shoulders Text', cursive;
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
+    line-height: 35px;
+
 }
 
 #pirateTranslation, #cockneyTranslation, #chefTranslation, 
@@ -87,7 +89,7 @@ body {
 @media only screen and (min-width: 601px) {
 .row .col.m6 {
     height: 500px !important;
-    font-size: 200px !important;
+    font-size: 20px !important;
 }
 
 }
