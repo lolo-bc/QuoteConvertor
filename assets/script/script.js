@@ -13,8 +13,6 @@
 
 $(document).ready(function () {
 
-    var translationsPerHour = 5;
-
     $('.dropdown-trigger').dropdown();
 
     const baseURL="https://api.funtranslations.com/translate/"
@@ -24,6 +22,7 @@ $(document).ready(function () {
     const oldEnglishURL = "oldenglish.json?text=";
 
     var randomQuote = ""
+    var translationsPerHour = 5;
 
     // T.W. 3/29
     // Function To Count Each Translate
@@ -52,6 +51,7 @@ $(document).ready(function () {
         }, 1000);
     };
 
+    // If user clicks get quote button, a random quote is returned.
     $("#getRandomQuote").click(function () {
         $.ajax({
             url: "https://favqs.com/api/qotd"
@@ -62,7 +62,8 @@ $(document).ready(function () {
             $('#randomQuote').text(randomQuote);
         });
 
-        // This should really be a drop down, it'll be easier to expand in future
+        // These functions are tied into the menu system. After each translation
+        // the code will automatically reduce one from the translation number
         // EXS added in Chef and Old English 30th March 2020.
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
@@ -75,14 +76,11 @@ $(document).ready(function () {
             translateOurQuote(randomQuote, fullCockneyURL);
             translatorCountFunction();
         });
-      
-        // EXS Added in translator Count calls
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL+chefURL;
             translateOurQuote(randomQuote, fullChefURL);
             translatorCountFunction();
         });
-
         $("oldEnglishTranslation").click (function () {
             var fullOldEnglishURL=baseURL+oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
@@ -98,7 +96,6 @@ $(document).ready(function () {
             myURL = translateURL + myQuote;
             $.ajax({
                 url: myURL
-
             }).then(function (response) {
                 console.log(response);
                 $("#translated").text(response.contents.translated);
