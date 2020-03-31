@@ -41,11 +41,12 @@ $(document).ready(function () {
     // T.W. 3/30
     // Resets Translates To 5 After One Hour
     function countDown() {
-        var counter = 3600;
+        var count = 3600;
         var oneHourCountDown = setInterval(function () {
-            console.log("CountDown: " + counter);
-            counter--
-            if (counter === 0) {
+            console.log("CountDown: " + count);
+            $("#translateCounterText").text("Seconds until you can translate again: " + count);
+            count--
+            if (count === 0) {
                 clearInterval(oneHourCountDown);
                 $("#translateCounter").text(5);
             }
@@ -84,7 +85,7 @@ $(document).ready(function () {
         });
 
         $("oldEnglishTranslation").click(function () {
-            var fulloldEnglishUrl = baseURL + oldEnglishURL;
+            var fullOldEnglishURL = baseURL + oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
             translatorCountFunction();
         });
@@ -114,12 +115,9 @@ $(document).ready(function () {
             // convertedType would be the pirate, cockney, yoda etc...
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
-            const quoteAPI = "https://https://favqs.com/api/qotd"
+            const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
-
         }
-
     });
-
     // End of jquery ready function    
 });

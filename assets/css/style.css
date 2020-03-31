@@ -1,13 +1,13 @@
 body {
     text-align: center;
-    font-family: 'Calistoga', cursive;
-    color: white;
+    font-family: 'Big Shoulders Text', cursive;
     line-height: 2rem;
     padding: 20px;
+    background-color: #fafafa ;
 }
 
 #translateCounterText {
-    color: #311b92;
+    color: #00897b;
     opacity: 60%;
     padding:0px;
     margin: 0px;
@@ -18,50 +18,76 @@ body {
     padding-bottom: 20px;
 }
 
-#quoteRow {
+#quoteArea {
     padding: 10px;
+    height: 100;
+
 }
 
+ 
 #randomQuote {
     border: none;
     padding: 20px;
-    color: #311b92;
-    font-family: 'Calistoga', cursive;
+    color: #00897b;
+    font-family: 'Big Shoulders Text', cursive;
     text-align: center;
-    font-size: 20px;
+    font-size: 35px;
     height: 4em;
-    min-height: 100%;
+    min-height: 80%;
 }
 
 #getRandomQuote {
     background: none;
-    color: #311b92;
-    font-family: 'Calistoga', cursive;
+    color: #00897b;
+    font-family: 'Girassol', cursive;
     border: none;
 
 }
 
 #convertedTextArea {
-    height: 100vh;
+    height: 500px;
     padding: 10px;
+    border: 1px;
+    border-style: groove;
+    border-width: 3px;
+    /* margin-left: 10px; */
 }
 
 .btn, .btn-large {
     background-color:#311b92 !important;
 }
 
-li {
-    color:pink ;
-}
 
 #translated {
     padding: 20px;
-    color: #311b92;
-    font-family: 'Calistoga', cursive;
+    color: #00897b;
+    font-family: 'Girassol', cursive;
     text-align: center;
     font-size: 20px;
 }
 
 .dropdown-content > li  {
-    color: purple !important; 
+    color: #00897b !important; 
+}
+
+@media only screen and (min-width: 601px) {
+.row .col.m6 {
+    height: 500px !important;
+    font-size: 200px !important;
+}
+
+}
+
+@media only screen and (max-width: 601px) {
+
+#convertedTextArea {
+    margin-left: 0px;
+    margin-top: 10px;
+} 
+ 
+#randomQuote {
+    font-size: 20px;
+
+}
+
 }
