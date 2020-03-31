@@ -106,7 +106,7 @@ $(document).ready(function () {
                 // This may need expanding with the type of translation performed
                 atrributeSites();
                 translatePerformed = true;
-            })
+            });
         }
 
         function atrributeSites() {
