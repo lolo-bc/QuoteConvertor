@@ -20,6 +20,7 @@ $(document).ready(function () {
     const pirateURL="pirate.json?text=";
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
+    const southernURL= "southern-accent.json?text=";
 
     var randomQuote = ""
     var translationsPerHour = 5;
@@ -88,6 +89,11 @@ $(document).ready(function () {
             translatorCountFunction();
         });
  
+        $("southerTranslation").click (function () {
+            var fullSouthernURL = baseURL+southernURL;
+            translateOurQuote (randomQuote, fullSouthernURL);
+            translatorCountFunction();
+        })
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
