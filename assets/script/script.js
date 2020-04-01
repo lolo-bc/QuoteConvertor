@@ -83,13 +83,13 @@ $(document).ready(function () {
             translateOurQuote(randomQuote, fullChefURL);
             translatorCountFunction();
         });
-        $("oldEnglishTranslation").click (function () {
+        $("#oldEnglishTranslation").click (function () {
             var fullOldEnglishURL=baseURL+oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
             translatorCountFunction();
         });
  
-        $("southernTranslation").click (function () {
+        $("#southernTranslation").click (function () {
             var fullSouthernURL = baseURL+southernURL;
             translateOurQuote (randomQuote, fullSouthernURL);
             translatorCountFunction();
