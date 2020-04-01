@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Calistoga&display=swap" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/materialize.css" media="screen,projection" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+
      <!-- Materialize Links -->
     <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Big+Shoulders+Text|Girassol&display=swap" rel="stylesheet">
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
@@ -24,21 +26,19 @@
     <div class="container">
 
         <div id="translateCounterText">
-            Translates left: <span id="#translateCounter"> 5</span>
+            Translates left: <span id=translateCounter> 5</span>
         </div>
 
         <div class="row">
+
         <div >
    
-        <h1 class="deep-purple-text text-lighten-1" id="title"> Quote Convertor</h1> 
+        <h1 class="teal-text text-lighten-1" id="title">FANCY TEXT TRANSLATOR</h1> 
         </div>
-
-
-        <div class="divider"></div>
-
 
         </div>
         <!-- Get random quote button -->
+<<<<<<< HEAD
         <div  id="quoteRow" class="row deep-purple lighten-2">
             <h4>Type in your text or <button id="getRandomQuote">Get Quote</button><br></h4>
             <textarea id="randomQuote"></textarea>
@@ -73,13 +73,39 @@
 
 
             <div id="translated" ></div>
+=======
+        <div class="row">
+
+            <div  id="quoteArea" class="col s12 m6  teal lighten-5">
+                <h4>Type in your text or <button id="getRandomQuote"> Get Quote</button><br></h4>
+                <textarea id="randomQuote"></textarea>
+                <br><br>
+            </div>
+
+            <div id="convertedTextArea" class="col s12 m6 ">
+                <h4>Select a language</h4>
+                <!-- <button id="pirateTranslation">Pirate</button>
+                <button id="cockneyTranslation">Cockney</button> -->
+
+                <!-- Dropdown Trigger -->
+                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Choose a language  <i class="small material-icons">arrow_drop_down
+                </i>
+                </a>
+
+                <ul id='dropdown1' class='dropdown-content'>
+                    <li id="pirateTranslation">Pirate</li>
+                    <li><a href="#!">two</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="#!">three</a></li>
+                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                </ul>
+                
+                <div id="translated" ></div>
+            </div>
+>>>>>>> master
         </div>
-
-
     </div>
-
-
-
 
 
     <div class="input-field">
