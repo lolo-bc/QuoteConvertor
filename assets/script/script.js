@@ -121,13 +121,12 @@ $(document).ready(function () {
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://favqs.com/api/qotd"
-            console.log("attributed sites");
             attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
-            console.log (attributeSites);
+            $("#attribute-site").text(attributeSites);
         }
 
-        function soundAndFont () {
-            console.log ("Sounds and font");
+        function soundEffects () {
+            console.log ("Sounds Effects");
         }
     });
     // End of jquery ready function    
