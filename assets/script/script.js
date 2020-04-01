@@ -51,7 +51,8 @@ $(document).ready(function () {
         }, 1000);
     };
 
-    // If user clicks get quote button, a random quote is returned.
+    randomQuote = $('#randomQuote').val();
+
     $("#getRandomQuote").click(function () {
         $.ajax({
             url: "https://favqs.com/api/qotd"
