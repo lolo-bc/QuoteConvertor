@@ -43,7 +43,7 @@ $(document).ready(function () {
     function countDown() {
         var counter = 3600;
         var oneHourCountDown = setInterval(function () {
-            console.log("CountDown: " + counter);
+            // console.log("CountDown: " + counter);
             counter--
             if (counter === 0) {
                 clearInterval(oneHourCountDown);
