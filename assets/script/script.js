@@ -122,6 +122,8 @@ $(document).ready(function () {
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
+            attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
+            console.log (attributeSites);
         }
 
         function soundAndFont () {
