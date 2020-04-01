@@ -53,6 +53,8 @@ $(document).ready(function () {
         }, 1000);
     };
 
+    randomQuote = $('#randomQuote').val();
+
     $("#getRandomQuote").click(function () {
         $.ajax({
             url: "https://favqs.com/api/qotd"
