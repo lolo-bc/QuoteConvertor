@@ -68,12 +68,16 @@ $(document).ready(function () {
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
             translateOurQuote(randomQuote, fullPirateURL);
+            // T.W 3/31
+            // Invoking Function To Count This Translation
             translatorCountFunction();
         });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
             translateOurQuote(randomQuote, fullCockneyURL);
+            // T.W 3/31
+            // Invoking Function To Count This Translation
             translatorCountFunction();
         });
 
@@ -81,12 +85,16 @@ $(document).ready(function () {
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL + chefURL;
             translateOurQuote(randomQuote, fullChefURL);
+            // T.W 3/31
+            // Invoking Function To Count This Translation
             translatorCountFunction();
         });
 
         $("oldEnglishTranslation").click(function () {
             var fullOldEnglishURL = baseURL + oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
+            // T.W 3/31
+            // Invoking Function To Count This Translation
             translatorCountFunction();
         });
 
