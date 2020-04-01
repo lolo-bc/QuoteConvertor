@@ -89,11 +89,11 @@ $(document).ready(function () {
             translatorCountFunction();
         });
  
-        $("southerTranslation").click (function () {
+        $("southernTranslation").click (function () {
             var fullSouthernURL = baseURL+southernURL;
             translateOurQuote (randomQuote, fullSouthernURL);
             translatorCountFunction();
-        })
+        });
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
