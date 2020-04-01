@@ -94,6 +94,7 @@ $(document).ready(function () {
             translateOurQuote (randomQuote, fullSouthernURL);
             translatorCountFunction();
         });
+
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
@@ -121,6 +122,10 @@ $(document).ready(function () {
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
+        }
+
+        function soundAndFont () {
+            console.log ("Sounds and font");
         }
     });
     // End of jquery ready function    
