@@ -43,10 +43,9 @@ $(document).ready(function () {
     function countDown() {
         var count = 3600;
         var oneHourCountDown = setInterval(function () {
-            console.log("CountDown: " + count);
-            $("#translateCounterText").text("Seconds until you can translate again: " + count);
-            count--
-            if (count === 0) {
+            // console.log("CountDown: " + counter);
+            counter--
+            if (counter === 0) {
                 clearInterval(oneHourCountDown);
                 $("#translateCounter").text(5);
             }
@@ -129,11 +128,12 @@ $(document).ready(function () {
             // EXS requested two fields for these to be written to 30th March
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://favqs.com/api/qotd"
-            console.log("attributed sites");
+            attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
+            $("#attribute-site").text(attributeSites);
         }
 
-        function soundAndFont() {
-            console.log("Sounds and font");
+        function soundEffects() {
+            console.log("Sounds Effects");
         }
     });
     // End of jquery ready function    
