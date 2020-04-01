@@ -13,8 +13,6 @@
 
 $(document).ready(function () {
 
-    var translationsPerHour = 5;
-
     $('.dropdown-trigger').dropdown();
 
     const baseURL = "https://api.funtranslations.com/translate/"
@@ -22,8 +20,10 @@ $(document).ready(function () {
     const pirateURL = "pirate.json?text=";
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
+    const southernURL = "southern-accent.json?text=";
 
     var randomQuote = ""
+    var translationsPerHour = 5;
 
     // T.W. 3/29
     // Function To Count Each Translate
@@ -65,7 +65,8 @@ $(document).ready(function () {
             $('#randomQuote').text(randomQuote);
         });
 
-        // This should really be a drop down, it'll be easier to expand in future
+        // These functions are tied into the menu system. After each translation
+        // the code will automatically reduce one from the translation number
         // EXS added in Chef and Old English 30th March 2020.
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
@@ -82,8 +83,6 @@ $(document).ready(function () {
             // Invoking Function To Count This Translation
             translatorCountFunction();
         });
-
-        // EXS Added in translator Count calls
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL + chefURL;
             translateOurQuote(randomQuote, fullChefURL);
@@ -91,12 +90,17 @@ $(document).ready(function () {
             // Invoking Function To Count This Translation
             translatorCountFunction();
         });
-
-        $("oldEnglishTranslation").click(function () {
+        $("#oldEnglishTranslation").click(function () {
             var fullOldEnglishURL = baseURL + oldEnglishURL;
             translateOurQuote(randomQuote, fullOldEnglishURL);
             // T.W 3/31
             // Invoking Function To Count This Translation
+            translatorCountFunction();
+        });
+
+        $("#southernTranslation").click(function () {
+            var fullSouthernURL = baseURL + southernURL;
+            translateOurQuote(randomQuote, fullSouthernURL);
             translatorCountFunction();
         });
 
@@ -109,7 +113,6 @@ $(document).ready(function () {
             myURL = translateURL + myQuote;
             $.ajax({
                 url: myURL
-
             }).then(function (response) {
                 console.log(response);
                 $("#translated").text(response.contents.translated);
@@ -127,6 +130,10 @@ $(document).ready(function () {
             const funTranslationsAPI = "https://www.funtranslations.com";
             const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
+        }
+
+        function soundAndFont() {
+            console.log("Sounds and font");
         }
     });
     // End of jquery ready function    
