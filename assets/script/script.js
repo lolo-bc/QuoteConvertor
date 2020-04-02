@@ -13,7 +13,11 @@
 
 $(document).ready(function () {
 
+    // part of materialize to make dropdown work 
     $('.dropdown-trigger').dropdown();
+
+    //code from materialze to make modal trigger work 
+        $('.modal').modal();
 
     const baseURL="https://api.funtranslations.com/translate/"
     const cockneyURL="cockney.json?text=";
@@ -52,7 +56,6 @@ $(document).ready(function () {
         }, 1000);
     };
 
-    randomQuote = $('#randomQuote').val();
 
     $("#getRandomQuote").click(function () {
         $.ajax({
@@ -60,40 +63,56 @@ $(document).ready(function () {
 
         }).then(function (response) {
             console.log(response);
+            console.log(randomQuote);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
+
         });
+
+      });
 
         // These functions are tied into the menu system. After each translation
         // the code will automatically reduce one from the translation number
         // EXS added in Chef and Old English 30th March 2020.
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullPirateURL);
+            $('#rand').addClass("pirateFont");
             translatorCountFunction();
         });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullCockneyURL);
+            $('#translated').addClass("cockneyFont");
             translatorCountFunction();
         });
         $("#chefTranslation").click(function () {
             var fullChefURL = baseURL+chefURL;
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullChefURL);
+            $('#translated').addClass("chefFont");
             translatorCountFunction();
         });
         $("oldEnglishTranslation").click (function () {
             var fullOldEnglishURL=baseURL+oldEnglishURL;
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullOldEnglishURL);
+            $('#translated').addClass("oldEngFont");
             translatorCountFunction();
         });
  
         $("southernTranslation").click (function () {
             var fullSouthernURL = baseURL+southernURL;
+            randomQuote = $('#randomQuote').val();
             translateOurQuote (randomQuote, fullSouthernURL);
+            $('#translated').addClass("cowboyFont");
             translatorCountFunction();
         });
+
+
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
         // Adding random comment to test git push
@@ -106,6 +125,11 @@ $(document).ready(function () {
             }).then(function (response) {
                 console.log(response);
                 $("#translated").text(response.contents.translated);
+
+                //testing poping up the modal
+                // $("#modalText").text(response.contents.translated);
+                // $('#modal1').show();
+
                 // After translation call the attributeSites function
                 // This may need expanding with the type of translation performed
                 atrributeSites();
@@ -122,6 +146,8 @@ $(document).ready(function () {
             const quoteAPI = "https://favqs.com/api/qotd"
             console.log("attributed sites");
         }
-    });
+
+
+
     // End of jquery ready function    
 });

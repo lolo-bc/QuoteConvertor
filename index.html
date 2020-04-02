@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
+    <!-- fonts for the translations  -->
+    <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Pinyon+Script&family=Pirata+One&family=Sancreek&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
      <!-- Materialize Links -->
     <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Big+Shoulders+Text|Girassol&display=swap" rel="stylesheet">
@@ -19,25 +22,46 @@
     <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
-    <title>FANCY TEXT TRANSLATOR</title>
+    <title>Fancy Text Translator</title>
 </head>
 
 <body>
- <div class="container">
+    <!-- the main HTML body -->
+    <div class="container">
 
-        <div id="translateCounterText">
-            Translates left: <span id=translateCounter> 5</span>
-        </div>
+        <!-- floaters on the left and right of the page -->
 
+            <!-- countdown timer for number of translates user can perform  -->
+            <div id="translateCounterText">
+                Translates left: <span id=translateCounter> 5</span>
+            </div>
+
+            <!-- Translated Text Modal button -->
+            <div id="translatedModal">
+                <p data-target="modal1" class="modal-trigger">Modal</p>
+            </div>
+
+        <!-- Modal for translated text  -->
+        
+          <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p id="modalText"></p>
+                </div>
+                <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+            </div>
+
+
+        <!-- This row is site header  -->
         <div class="row">
-
-        <div >
-   
-        <h1 class="teal-text text-lighten-1" id="title">FANCY TEXT TRANSLATOR</h1> 
+            <h1 class="teal-text text-lighten-1" id="title">FANCY TEXT TRANSLATOR</h1> 
         </div>
 
-        </div>
-        <!-- Get random quote button -->
+
+        <!-- This row is for the text area  -->
         <div class="row">
 
             <div  id="quoteArea" class="col s12 m6  teal lighten-5">
@@ -64,18 +88,15 @@
                 <div id="translated" ></div>
             </div>
         </div>
+
+    <!-- end of container -->
     </div>
 
 
-    <div class="input-field">
-        <select>
-            <option value="0">Choose your option</option>
-            <option value="1" id="pirateTranslation">Pirate</option>
-            <option value="2" id="cockneyTranslation">Cockney</option>
-            <option value="3" id="balajha">Option 3</option>
-            <option value="4">Eddie Test</option>
-        </select>
-    </div>
+     <footer >
+        <p id="attribute-site"></p>
+    </footer>
+</body>
 
     <!-- Include a link to our JQuery and JavaScript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
