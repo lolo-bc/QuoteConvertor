@@ -22,12 +22,18 @@ $(document).ready(function () {
     const baseURL="https://api.funtranslations.com/translate/"
     const cockneyURL="cockney.json?text=";
     const pirateURL="pirate.json?text=";
+
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
-    const southernURL= "southern-accent.json?text=";
-
+    const southernURL = "southern-accent.json?text=";
+    const gameStart = new Audio("./assets/sfx/gameStart.mp3");
+    //const RIGHT_ANSWER = new Audio("./assets/sfx/rightAnswer.mp3");
     var randomQuote = ""
     var translationsPerHour = 5;
+
+    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
+   
+    //initalize();
 
     // T.W. 3/29
     // Function To Count Each Translate
@@ -47,7 +53,7 @@ $(document).ready(function () {
     function countDown() {
         var counter = 3600;
         var oneHourCountDown = setInterval(function () {
-            console.log("CountDown: " + counter);
+            // console.log("CountDown: " + counter);
             counter--
             if (counter === 0) {
                 clearInterval(oneHourCountDown);
@@ -58,6 +64,7 @@ $(document).ready(function () {
 
 
     $("#getRandomQuote").click(function () {
+        playSFX(gameStart);
         $.ajax({
             url: "https://favqs.com/api/qotd"
 
@@ -68,6 +75,7 @@ $(document).ready(function () {
             $('#randomQuote').text(randomQuote);
 
         });
+       
 
       });
 
@@ -90,19 +98,24 @@ $(document).ready(function () {
             translatorCountFunction();
         });
         $("#chefTranslation").click(function () {
+
             var fullChefURL = baseURL+chefURL;
             randomQuote = $('#randomQuote').val();
+
             translateOurQuote(randomQuote, fullChefURL);
             $('#translated').addClass("chefFont");
             translatorCountFunction();
         });
+
         $("oldEnglishTranslation").click (function () {
             var fullOldEnglishURL=baseURL+oldEnglishURL;
             randomQuote = $('#randomQuote').val();
+
             translateOurQuote(randomQuote, fullOldEnglishURL);
             $('#translated').addClass("oldEngFont");
             translatorCountFunction();
         });
+
  
         $("southernTranslation").click (function () {
             var fullSouthernURL = baseURL+southernURL;
@@ -111,7 +124,6 @@ $(document).ready(function () {
             $('#translated').addClass("cowboyFont");
             translatorCountFunction();
         });
-
 
         // This function allows us to pass the quote and create an API URL for fun translations
         //  EXS 27th March 2020
@@ -132,22 +144,38 @@ $(document).ready(function () {
 
                 // After translation call the attributeSites function
                 // This may need expanding with the type of translation performed
-                atrributeSites();
+                // atrributedSites();
                 translatePerformed = true;
             });
         }
 
-        function atrributeSites() {
-            // This function will display the attribute links required for API access
-            // EXS msaunders.eddie@outlook.com 28th March 2020
-            // convertedType would be the pirate, cockney, yoda etc...
-            // EXS requested two fields for these to be written to 30th March
-            const funTranslationsAPI = "https://www.funtranslations.com";
-            const quoteAPI = "https://favqs.com/api/qotd"
-            console.log("attributed sites");
+        function soundEffects() {
+            console.log("Sounds Effects");
         }
+    });
+    // This area is for the wierd funky functions that for some reason are not callable within document ready
+    
+    function initalize () {
+        // Play game start sound
+        // playSFX()
+        attributedSites();
+    }
 
+    function atrributedSites() {
+        // This function will display the attribute links required for API access
+        // EXS msaunders.eddie@outlook.com 28th March 2020
+        // convertedType would be the pirate, cockney, yoda etc...
+        // EXS requested two fields for these to be written to 30th March
+        const funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
+        const quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
+        attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
+        // console.log (attributeSites);
+        $("#attribute-site").html(attributeSites);
+    }
 
-
+    function playSFX (sfxName) {
+        console.log ("Playing sound effects!");
+        sfxName.play();
+    }
     // End of jquery ready function    
 });
