@@ -59,10 +59,12 @@ $(document).ready(function () {
             url: "https://favqs.com/api/qotd"
 
         }).then(function (response) {
-            console.log(response);
+            //console.log(response);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
+            
         });
+        atrributeSites();
 
         // These functions are tied into the menu system. After each translation
         // the code will automatically reduce one from the translation number
@@ -119,10 +121,11 @@ $(document).ready(function () {
             // EXS msaunders.eddie@outlook.com 28th March 2020
             // convertedType would be the pirate, cockney, yoda etc...
             // EXS requested two fields for these to be written to 30th March
-            const funTranslationsAPI = "https://www.funtranslations.com";
-            const quoteAPI = "https://favqs.com/api/qotd"
+            const funTranslationsAPI = '<a href="http://www.funtranslations.com/" target="_blank">fun translations</a>';
+            const quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
             attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
-            $("#attribute-site").text(attributeSites);
+            console.log (attributeSites);
+            $("#attribute-site").html(attributeSites);
         }
 
         function soundEffects () {
