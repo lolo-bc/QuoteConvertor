@@ -102,7 +102,7 @@ $(document).ready(function () {
         translatorCountFunction();
     });
 
-    $("oldEnglishTranslation").click(function () {
+    $("#oldEnglishTranslation").click(function () {
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullOldEnglishURL);
@@ -110,12 +110,16 @@ $(document).ready(function () {
         translatorCountFunction();
     });
 
-    $("southernTranslation").click(function () {
+    $("#southernTranslation").click(function () {
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullSouthernURL);
         $('#translated').addClass("cowboyFont");
         translatorCountFunction();
+    });
+    // EXS Empty  randomQuote area if user clicks on it
+    $("#randomQuote").click (function () {
+        $("#randomQuote").empty();
     });
 
     // This function allows us to pass the quote and create an API URL for fun translations
@@ -141,22 +145,17 @@ $(document).ready(function () {
             // atrributedSites();
             translatePerformed = true;
         });
-
-   
     }
 
- 
     // This area is for the wierd funky functions that for some reason are not callable within document ready
 
     function initPage() {
-        atrributedSites();
+        atrributedSites();  
+        playSFX(gameStart);
     }
     
     function atrributedSites() {
         // This function will display the attribute links required for API access
-        // EXS msaunders.eddie@outlook.com 28th March 2020
-        // convertedType would be the pirate, cockney, yoda etc...
-        // EXS requested two fields for these to be written to 30th March
         var funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
         var quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
         attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
@@ -164,14 +163,9 @@ $(document).ready(function () {
         $("#attribute-site").html(attributeSites);
     }
 
-
-
-
     function playSFX(sfxName) {
         console.log("Playing sound effects!");
         sfxName.play();
     }
     // End of jquery ready function    
 });
-
-
