@@ -121,7 +121,7 @@ $(document).ready(function () {
             // EXS msaunders.eddie@outlook.com 28th March 2020
             // convertedType would be the pirate, cockney, yoda etc...
             // EXS requested two fields for these to be written to 30th March
-            const funTranslationsAPI = '<a href="http://www.funtranslations.com/" target="_blank">fun translations</a>';
+            const funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
             const quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
             attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
             console.log (attributeSites);
