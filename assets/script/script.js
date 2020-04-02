@@ -31,9 +31,10 @@ $(document).ready(function () {
     var randomQuote = ""
     var translationsPerHour = 5;
 
-    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
 
-    //initalize();
+    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
+    // EXS 1st April 2020
+    initPage();
 
     // T.W. 3/29
     // Function To Count Each Translate
@@ -62,21 +63,17 @@ $(document).ready(function () {
         }, 1000);
     };
 
-
     $("#getRandomQuote").click(function () {
         playSFX(gameStart);
         $.ajax({
-            url: "https://favqs.com/api/qotd"
-
+            url: "https://favqs.com/api/qotd",
+            method: "GET"
         }).then(function (response) {
             console.log(response);
             console.log(randomQuote);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
-
         });
-
-
     });
 
     // These functions are tied into the menu system. After each translation
@@ -98,10 +95,8 @@ $(document).ready(function () {
         translatorCountFunction();
     });
     $("#chefTranslation").click(function () {
-
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
-
         translateOurQuote(randomQuote, fullChefURL);
         $('#translated').addClass("chefFont");
         translatorCountFunction();
@@ -110,12 +105,10 @@ $(document).ready(function () {
     $("oldEnglishTranslation").click(function () {
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
-
         translateOurQuote(randomQuote, fullOldEnglishURL);
         $('#translated').addClass("oldEngFont");
         translatorCountFunction();
     });
-
 
     $("southernTranslation").click(function () {
         var fullSouthernURL = baseURL + southernURL;
@@ -133,7 +126,8 @@ $(document).ready(function () {
         myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
         $.ajax({
-            url: myURL
+            url: myURL,
+            method: "GET"
         }).then(function (response) {
             console.log(response);
             $("#translated").text(response.contents.translated);
@@ -147,29 +141,31 @@ $(document).ready(function () {
             // atrributedSites();
             translatePerformed = true;
         });
+
+   
     }
 
-    function soundEffects() {
-        console.log("Sounds Effects");
-    }
+ 
     // This area is for the wierd funky functions that for some reason are not callable within document ready
-    function initalize() {
-        // Play game start sound
-        // playSFX()
-        attributedSites();
-    }
 
+    function initPage() {
+        atrributedSites();
+    }
+    
     function atrributedSites() {
         // This function will display the attribute links required for API access
         // EXS msaunders.eddie@outlook.com 28th March 2020
         // convertedType would be the pirate, cockney, yoda etc...
         // EXS requested two fields for these to be written to 30th March
-        const funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
-        const quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
+        var funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
+        var quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
         attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
         // console.log (attributeSites);
         $("#attribute-site").html(attributeSites);
     }
+
+
+
 
     function playSFX(sfxName) {
         console.log("Playing sound effects!");
@@ -177,3 +173,5 @@ $(document).ready(function () {
     }
     // End of jquery ready function    
 });
+
+
