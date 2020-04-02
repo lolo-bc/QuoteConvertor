@@ -82,39 +82,35 @@ $(document).ready(function () {
     $("#pirateTranslation").click(function () {
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullPirateURL);
-        $('#rand').addClass("pirateFont");
+        translateOurQuote(randomQuote, fullPirateURL, "Pirate One");
         translatorCountFunction();
     });
 
     $("#cockneyTranslation").click(function () {
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullCockneyURL);
         $('#translated').addClass("cockneyFont");
+        translateOurQuote(randomQuote, fullCockneyURL, "");
         translatorCountFunction();
     });
     $("#chefTranslation").click(function () {
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullChefURL);
-        $('#translated').addClass("chefFont");
+        translateOurQuote(randomQuote, fullChefURL,"chefFont");
         translatorCountFunction();
     });
 
     $("#oldEnglishTranslation").click(function () {
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullOldEnglishURL);
-        $('#translated').addClass("oldEngFont");
+        translateOurQuote(randomQuote, fullOldEnglishURL, "oldEnglishFont");
         translatorCountFunction();
     });
 
     $("#southernTranslation").click(function () {
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullSouthernURL);
-        $('#translated').addClass("cowboyFont");
+        translateOurQuote(randomQuote, fullSouthernURL, "cowboyFont");
         translatorCountFunction();
     });
     // EXS Empty  randomQuote area if user clicks on it
@@ -125,8 +121,12 @@ $(document).ready(function () {
     // This function allows us to pass the quote and create an API URL for fun translations
     //  EXS 27th March 2020
     // Adding random comment to test git push
-    function translateOurQuote(randomQuote, translateURL) {
+    function translateOurQuote(randomQuote, translateURL, fontType) {
         //console.log (randomQuote, translateURL);
+        // clear any classes we've added for languages
+        $("#translated").removeClass();
+        //$("#translated").addClass(fontType);
+        $("#translated").css("font-family:", fontType);
         myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
         $.ajax({
