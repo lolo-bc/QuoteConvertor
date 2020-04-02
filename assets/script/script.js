@@ -13,11 +13,16 @@
 
 $(document).ready(function () {
 
+    // part of materialize to make dropdown work 
     $('.dropdown-trigger').dropdown();
 
-    const baseURL = "https://api.funtranslations.com/translate/"
-    const cockneyURL = "cockney.json?text=";
-    const pirateURL = "pirate.json?text=";
+    //code from materialze to make modal trigger work 
+        $('.modal').modal();
+
+    const baseURL="https://api.funtranslations.com/translate/"
+    const cockneyURL="cockney.json?text=";
+    const pirateURL="pirate.json?text=";
+
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
     const southernURL = "southern-accent.json?text=";
@@ -57,7 +62,6 @@ $(document).ready(function () {
         }, 1000);
     };
 
-    randomQuote = $('#randomQuote').val();
 
     $("#getRandomQuote").click(function () {
         playSFX(gameStart);
@@ -65,41 +69,59 @@ $(document).ready(function () {
             url: "https://favqs.com/api/qotd"
 
         }).then(function (response) {
-            //console.log(response);
+            console.log(response);
+            console.log(randomQuote);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
 
         });
        
 
+      });
+
         // These functions are tied into the menu system. After each translation
         // the code will automatically reduce one from the translation number
         // EXS added in Chef and Old English 30th March 2020.
         $("#pirateTranslation").click(function () {
             var fullPirateURL = baseURL + pirateURL;
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullPirateURL);
+            $('#rand').addClass("pirateFont");
             translatorCountFunction();
         });
 
         $("#cockneyTranslation").click(function () {
             var fullCockneyURL = baseURL + cockneyURL
+            randomQuote = $('#randomQuote').val();
             translateOurQuote(randomQuote, fullCockneyURL);
+            $('#translated').addClass("cockneyFont");
             translatorCountFunction();
         });
         $("#chefTranslation").click(function () {
-            var fullChefURL = baseURL + chefURL;
+
+            var fullChefURL = baseURL+chefURL;
+            randomQuote = $('#randomQuote').val();
+
             translateOurQuote(randomQuote, fullChefURL);
-            translatorCountFunction();
-        });
-        $("#oldEnglishTranslation").click(function () {
-            var fullOldEnglishURL = baseURL + oldEnglishURL;
-            translateOurQuote(randomQuote, fullOldEnglishURL);
+            $('#translated').addClass("chefFont");
             translatorCountFunction();
         });
 
-        $("#southernTranslation").click(function () {
-            var fullSouthernURL = baseURL + southernURL;
-            translateOurQuote(randomQuote, fullSouthernURL);
+        $("oldEnglishTranslation").click (function () {
+            var fullOldEnglishURL=baseURL+oldEnglishURL;
+            randomQuote = $('#randomQuote').val();
+
+            translateOurQuote(randomQuote, fullOldEnglishURL);
+            $('#translated').addClass("oldEngFont");
+            translatorCountFunction();
+        });
+
+ 
+        $("southernTranslation").click (function () {
+            var fullSouthernURL = baseURL+southernURL;
+            randomQuote = $('#randomQuote').val();
+            translateOurQuote (randomQuote, fullSouthernURL);
+            $('#translated').addClass("cowboyFont");
             translatorCountFunction();
         });
 
@@ -115,14 +137,17 @@ $(document).ready(function () {
             }).then(function (response) {
                 console.log(response);
                 $("#translated").text(response.contents.translated);
+
+                //testing poping up the modal
+                // $("#modalText").text(response.contents.translated);
+                // $('#modal1').show();
+
                 // After translation call the attributeSites function
                 // This may need expanding with the type of translation performed
                 // atrributedSites();
                 translatePerformed = true;
             });
         }
-
-   
 
         function soundEffects() {
             console.log("Sounds Effects");
