@@ -70,11 +70,11 @@ $(document).ready(function () {
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
-        $("#translated").removeClass("pirateFont");
-        $("#translated").removeClass("cockneyFont");
-        $("#translated").removeClass("cowboyFont");
-        $("#translated").removeClass("oldEngFont");
-        $("#translated").removeClass("chefFont");
+        $("#translated").removeClass();
+        // $("#translated").removeClass("cockneyFont");
+        // $("#translated").removeClass("cowboyFont");
+        // $("#translated").removeClass("oldEngFont");
+        // $("#translated").removeClass("chefFont");
     }
 
 
@@ -83,6 +83,8 @@ $(document).ready(function () {
 
     $('#clearQuotesBtn').click(function () {
         localStorage.clear();
+        $('modal1').hide();
+        location.reload(true);
     })
     // Initalize our site, we may tiurn this into a function to play some starting sound effects.
 
@@ -197,7 +199,7 @@ $(document).ready(function () {
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
             
-            //add quote onto the textarea 
+            //add quote onto the textarea do
             $("#translated").text(translation);
 
             //add quote into the modal on full web
