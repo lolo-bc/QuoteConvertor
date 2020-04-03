@@ -69,12 +69,20 @@ $(document).ready(function () {
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
+<<<<<<< HEAD
+        $("#translated").removeClass();
+        // $("#translated").removeClass("cockneyFont");
+        // $("#translated").removeClass("cowboyFont");
+        // $("#translated").removeClass("oldEngFont");
+        // $("#translated").removeClass("chefFont");
+=======
         // Investigate .removeClass() which removes all
         $("#translated").removeClass("pirateFont");
         $("#translated").removeClass("cockneyFont");
         $("#translated").removeClass("cowboyFont");
         $("#translated").removeClass("oldEngFont");
         $("#translated").removeClass("chefFont");
+>>>>>>> eade2fc66fd792474c04e93544738e1b84423e4b
     }
 
 
@@ -82,6 +90,8 @@ $(document).ready(function () {
     //Click button function to clear local storage 
     $('#clearQuotesBtn').click(function () {
         localStorage.clear();
+        $('modal1').hide();
+        location.reload(true);
     })
  
     // EXS 1st April 2020 - Page initalize
@@ -196,7 +206,7 @@ $(document).ready(function () {
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
             
-            //add quote onto the textarea 
+            //add quote onto the textarea do
             $("#translated").text(translation);
 
             //add quote into the modal on full web
