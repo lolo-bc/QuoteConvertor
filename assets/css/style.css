@@ -125,12 +125,15 @@ li {
         font-size: 20px;
     }
 
+<<<<<<< HEAD
+}
+=======
     #translatedModal {
         display: none;
     }
 
+>>>>>>> master
 }
-
 
 /* fonts for the translations */
 

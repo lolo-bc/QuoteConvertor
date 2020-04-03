@@ -81,12 +81,17 @@ $(document).ready(function () {
     //L.C. 4/2
     //Click button function to clear local storage 
 
+<<<<<<< HEAD
+=======
     $('#clearQuotesBtn').click(function () {
         localStorage.clear();
     })
     // Initalize our site, we may tiurn this into a function to play some starting sound effects.
+>>>>>>> master
 
-    //initalize();
+    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
+    // EXS 1st April 2020
+    initPage();
 
     // T.W. 3/29
     // Function To Count Each Translate
@@ -115,21 +120,17 @@ $(document).ready(function () {
         }, 1000);
     };
 
-
     $("#getRandomQuote").click(function () {
         playSFX(gameStart);
         $.ajax({
-            url: "https://favqs.com/api/qotd"
-
+            url: "https://favqs.com/api/qotd",
+            method: "GET"
         }).then(function (response) {
             console.log(response);
             console.log(randomQuote);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
-
         });
-
-
     });
 
     // These functions are tied into the menu system. After each translation
@@ -138,55 +139,74 @@ $(document).ready(function () {
     $("#pirateTranslation").click(function () {
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
+<<<<<<< HEAD
+        translateOurQuote(randomQuote, fullPirateURL, "Pirate One");
+=======
         translateOurQuote(randomQuote, fullPirateURL);
         $('#translated').addClass("pirateFont");
+>>>>>>> master
         translatorCountFunction();
     });
 
     $("#cockneyTranslation").click(function () {
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullCockneyURL);
         $('#translated').addClass("cockneyFont");
+        translateOurQuote(randomQuote, fullCockneyURL, "");
         translatorCountFunction();
     });
+<<<<<<< HEAD
+    $("#chefTranslation").click(function () {
+        var fullChefURL = baseURL + chefURL;
+        randomQuote = $('#randomQuote').val();
+        translateOurQuote(randomQuote, fullChefURL,"chefFont");
+=======
 
     $("#chefTranslation").click(function () {
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullChefURL);
         $('#translated').addClass("chefFont");
+>>>>>>> master
         translatorCountFunction();
     });
 
-    $("oldEnglishTranslation").click(function () {
+    $("#oldEnglishTranslation").click(function () {
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
-
-        translateOurQuote(randomQuote, fullOldEnglishURL);
-        $('#translated').addClass("oldEngFont");
+        translateOurQuote(randomQuote, fullOldEnglishURL, "oldEnglishFont");
         translatorCountFunction();
     });
 
-
-    $("southernTranslation").click(function () {
+    $("#southernTranslation").click(function () {
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullSouthernURL);
-        $('#translated').addClass("cowboyFont");
+        translateOurQuote(randomQuote, fullSouthernURL, "cowboyFont");
         translatorCountFunction();
+    });
+    // EXS Empty  randomQuote area if user clicks on it
+    $("#randomQuote").click (function () {
+        $("#randomQuote").empty();
     });
 
     // This function allows us to pass the quote and create an API URL for fun translations
     //  EXS 27th March 2020
     // Adding random comment to test git push
-    function translateOurQuote(randomQuote, translateURL) {
+    function translateOurQuote(randomQuote, translateURL, fontType) {
         //console.log (randomQuote, translateURL);
+        // clear any classes we've added for languages
+        $("#translated").removeClass();
+        //$("#translated").addClass(fontType);
+        $("#translated").css("font-family:", fontType);
         myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
         $.ajax({
             url: myURL,
+<<<<<<< HEAD
+            method: "GET"
+=======
             error: whoops
+>>>>>>> master
         }).then(function (response) {
             console.log(response);
 
@@ -213,6 +233,9 @@ $(document).ready(function () {
         });
     }
 
+<<<<<<< HEAD
+    // This area is for the wierd funky functions that for some reason are not callable within document ready
+=======
 
 
     // function soundEffects() {
@@ -228,14 +251,17 @@ $(document).ready(function () {
 
 
     atrributedSites()
+>>>>>>> master
 
+    function initPage() {
+        atrributedSites();  
+        playSFX(gameStart);
+    }
+    
     function atrributedSites() {
         // This function will display the attribute links required for API access
-        // EXS msaunders.eddie@outlook.com 28th March 2020
-        // convertedType would be the pirate, cockney, yoda etc...
-        // EXS requested two fields for these to be written to 30th March
-        const funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
-        const quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
+        var funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
+        var quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
         attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
         // console.log (attributeSites);
         $("#attribute-site").html(attributeSites);
