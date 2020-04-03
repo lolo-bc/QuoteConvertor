@@ -1,30 +1,36 @@
 body {
     text-align: center;
-    font-family: 'Big Shoulders Text', cursive;
+    font-family: 'NTR', sans-serif;
     line-height: 2rem;
     padding: 20px;
     background-color: #fafafa ;
+    background-color: #263238;
 }
 
 #translateCounterText {
-    color: #00897b;
     opacity: 60%;
     padding:0px;
     margin: 0px;
-    text-align: right;
+    cursor: pointer;
 }
 
 #translatedModal {
-    color: #00897b;
     opacity: 60%;
     padding:0px;
     margin: 0px;
-    text-align: left;
 }
 
+.purpText {
+    color:#5c6bc0 !important; 
+}
+
+/* #modalText {
+    font-size: 20px;
+} */
 
 #title{
     padding-bottom: 20px;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 #quoteArea {
@@ -33,22 +39,9 @@ body {
 
 }
 
-#randomQuote {
-    border: none;
-    padding: 20px;
-    color: #00897b;
-    font-family: 'Big Shoulders Text', cursive;
-    text-align: center;
-    font-size: 35px;
-    height: 4em;
-    min-height: 80%;
-    line-height: 35px;
-}
-
 #getRandomQuote {
     background: none;
-    color: #00897b;
-    font-family: 'Girassol', cursive;
+    color: white;
     border: none;
 
 }
@@ -56,22 +49,33 @@ body {
 #convertedTextArea {
     height: 500px;
     padding: 10px;
-    border: 1px;
-    border-style: groove;
-    border-width: 3px;
     /* margin-left: 10px; */
 }
 
+#randomQuote {
+    border: none;
+    font-size: 35px;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 4em;
+    min-height: 80%;
+    line-height: 35px;
+}
 
 #translated {
-    padding: 20px;
-    color: #00897b;
-    font-family: 'Big Shoulders Text', cursive;
+    color: #263238;
+    padding: 10px;
     text-align: center;
-    font-size: 35px;
+    font-size: 30px;
     line-height: 35px;
-
 }
+
+
+#translationsMobileRow {
+    color: white;
+}
+
 
 #pirateTranslation, #cockneyTranslation, #chefTranslation, 
 #oldEnglishTranslation, #southernTranslation {
@@ -83,8 +87,20 @@ body {
 }
 
 .dropdown-content > li  {
-    color: #00897b !important; 
+    color: #263238 !important; 
 }
+
+#badRequestPopup {
+    display: none;
+}
+
+li {
+    list-style-type: none;
+    padding: 10px;
+}
+
+
+
 
 @media only screen and (min-width: 601px) {
 .row .col.m6 {
@@ -92,19 +108,26 @@ body {
     font-size: 20px !important;
 }
 
+#translationsMobileRow {
+    display: none;
+}
+
 }
 
 @media only screen and (max-width: 601px) {
 
-#convertedTextArea {
-    margin-left: 0px;
-    margin-top: 10px;
-} 
- 
-#randomQuote {
-    font-size: 20px;
+    #convertedTextArea {
+        margin-left: 0px;
+        margin-top: 10px;
+    } 
+    
+    #randomQuote {
+        font-size: 20px;
+    }
 
-}
+    #translatedModal {
+        display: none;
+    }
 
 }
 
@@ -112,25 +135,22 @@ body {
 /* fonts for the translations */
 
 .pirateFont {
-    font-family: 'Pirata One', cursive;
+    font-family: 'Pirata One', cursive !important; 
 }
 
 .cockneyFont {
-    font-family: 'Lacquer', cursive;
+    font-family: 'Lacquer', cursive !important;
 }
 
 .cowboyFont {
-    font-family: 'Sancreek', cursive;
+    font-family: 'Sancreek', cursive !important;
 }
 
 .oldEngFont {
-    font-family: 'UnifrakturMaguntia', cursive;
+    font-family: 'UnifrakturMaguntia', cursive !important;
 }
 
 .chefFont {
-    font-family: 'Pinyon Script', cursive;
+    font-family: 'Pinyon Script', cursive !important;
 }
 
-#modal1 {
-    background-color: green;
-}
