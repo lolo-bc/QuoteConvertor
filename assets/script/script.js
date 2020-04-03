@@ -26,7 +26,7 @@ $(document).ready(function () {
     const oldEnglishURL = "oldenglish.json?text=";
     const southernURL = "southern-accent.json?text=";
     const gameStart = new Audio("./assets/sfx/gameStart.mp3");
-    //const RIGHT_ANSWER = new Audio("./assets/sfx/rightAnswer.mp3");
+  
     var randomQuote = ""
     var translationsPerHour = 5;
     var spaceBtwQuotes = $("<li>");
@@ -66,10 +66,10 @@ $(document).ready(function () {
         setTimeout(function(){ $('#badRequestPopup').hide();}, 3600000);
     }
 
-
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
+        // Investigate .removeClass() which removes all
         $("#translated").removeClass("pirateFont");
         $("#translated").removeClass("cockneyFont");
         $("#translated").removeClass("cowboyFont");
@@ -80,17 +80,11 @@ $(document).ready(function () {
 
     //L.C. 4/2
     //Click button function to clear local storage 
-
-<<<<<<< HEAD
-=======
     $('#clearQuotesBtn').click(function () {
         localStorage.clear();
     })
-    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
->>>>>>> master
-
-    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
-    // EXS 1st April 2020
+ 
+    // EXS 1st April 2020 - Page initalize
     initPage();
 
     // T.W. 3/29
@@ -139,35 +133,22 @@ $(document).ready(function () {
     $("#pirateTranslation").click(function () {
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
-<<<<<<< HEAD
-        translateOurQuote(randomQuote, fullPirateURL, "Pirate One");
-=======
-        translateOurQuote(randomQuote, fullPirateURL);
-        $('#translated').addClass("pirateFont");
->>>>>>> master
+        translateOurQuote(randomQuote, fullPirateURL,"pirateFont");
+        //$('#translated').addClass("pirateFont");
         translatorCountFunction();
     });
 
     $("#cockneyTranslation").click(function () {
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
-        $('#translated').addClass("cockneyFont");
-        translateOurQuote(randomQuote, fullCockneyURL, "");
+        //$('#translated').addClass("cockneyFont");
+        translateOurQuote(randomQuote, fullCockneyURL, "cockneyFont");
         translatorCountFunction();
     });
-<<<<<<< HEAD
     $("#chefTranslation").click(function () {
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullChefURL,"chefFont");
-=======
-
-    $("#chefTranslation").click(function () {
-        var fullChefURL = baseURL + chefURL;
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullChefURL);
-        $('#translated').addClass("chefFont");
->>>>>>> master
         translatorCountFunction();
     });
 
@@ -184,7 +165,7 @@ $(document).ready(function () {
         translateOurQuote(randomQuote, fullSouthernURL, "cowboyFont");
         translatorCountFunction();
     });
-    // EXS Empty  randomQuote area if user clicks on it
+    // EXS Empty randomQuote area if user clicks on it
     $("#randomQuote").click (function () {
         $("#randomQuote").empty();
     });
@@ -202,11 +183,8 @@ $(document).ready(function () {
         myURL = translateURL + myQuote;
         $.ajax({
             url: myURL,
-<<<<<<< HEAD
-            method: "GET"
-=======
+            method: "GET",
             error: whoops
->>>>>>> master
         }).then(function (response) {
             console.log(response);
 
@@ -232,26 +210,7 @@ $(document).ready(function () {
             translatePerformed = true;
         });
     }
-
-<<<<<<< HEAD
-    // This area is for the wierd funky functions that for some reason are not callable within document ready
-=======
-
-
-    // function soundEffects() {
-    //     console.log("Sounds Effects");
-    // }
-    // // This area is for the wierd funky functions that for some reason are not callable within document ready
-
-    // function initialize() {
-    //     // Play game start sound
-    //     // playSFX()
-    //     attributedSites();
-    // }
-
-
     atrributedSites()
->>>>>>> master
 
     function initPage() {
         atrributedSites();  
