@@ -69,20 +69,11 @@ $(document).ready(function () {
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
-<<<<<<< HEAD
         $("#translated").removeClass();
         // $("#translated").removeClass("cockneyFont");
         // $("#translated").removeClass("cowboyFont");
         // $("#translated").removeClass("oldEngFont");
         // $("#translated").removeClass("chefFont");
-=======
-        // Investigate .removeClass() which removes all
-        $("#translated").removeClass("pirateFont");
-        $("#translated").removeClass("cockneyFont");
-        $("#translated").removeClass("cowboyFont");
-        $("#translated").removeClass("oldEngFont");
-        $("#translated").removeClass("chefFont");
->>>>>>> eade2fc66fd792474c04e93544738e1b84423e4b
     }
 
 
@@ -227,6 +218,7 @@ $(document).ready(function () {
             translatePerformed = true;
         });
     }
+
     atrributedSites()
 
     function initPage() {
