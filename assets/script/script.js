@@ -136,6 +136,7 @@ $(document).ready(function () {
     // the code will automatically reduce one from the translation number
     // EXS added in Chef and Old English 30th March 2020.
     $("#pirateTranslation").click(function () {
+        clearStyles();
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullPirateURL);
@@ -144,6 +145,7 @@ $(document).ready(function () {
     });
 
     $("#cockneyTranslation").click(function () {
+        clearStyles();
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullCockneyURL);
@@ -152,6 +154,7 @@ $(document).ready(function () {
     });
 
     $("#chefTranslation").click(function () {
+        clearStyles();
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullChefURL);
@@ -160,9 +163,9 @@ $(document).ready(function () {
     });
 
     $("oldEnglishTranslation").click(function () {
+        clearStyles();
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
-
         translateOurQuote(randomQuote, fullOldEnglishURL);
         $('#translated').addClass("oldEngFont");
         translatorCountFunction();
@@ -170,6 +173,7 @@ $(document).ready(function () {
 
 
     $("southernTranslation").click(function () {
+        clearStyles();
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullSouthernURL);
@@ -191,17 +195,19 @@ $(document).ready(function () {
             console.log(response);
 
             var translation = response.contents.translated
-            var spaceBtwQuotes2 = $("<li>");
+            var spaceBtwQuotes2 = $("<br>");
             
+            //add quote onto the textarea 
             $("#translated").text(translation);
 
+            //add quote into the modal on full web
             $("#modalText").append(translation);
             $("#modalText").append(spaceBtwQuotes2);
 
+            //add quote into the row div on mobile
             $("#translationsMobile").append(translation);
             $("#translationsMobile").append(spaceBtwQuotes2);
 
-            clearStyles();
 
             userTranslationsSavedArray.push(translation)
             localStorage.setItem("userTranslations", JSON.stringify(userTranslationsSavedArray));
