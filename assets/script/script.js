@@ -22,7 +22,6 @@ $(document).ready(function () {
     const baseURL = "https://api.funtranslations.com/translate/"
     const cockneyURL = "cockney.json?text=";
     const pirateURL = "pirate.json?text=";
-
     const chefURL = "chef.json?text=";
     const oldEnglishURL = "oldenglish.json?text=";
     const southernURL = "southern-accent.json?text=";
@@ -30,7 +29,65 @@ $(document).ready(function () {
     //const RIGHT_ANSWER = new Audio("./assets/sfx/rightAnswer.mp3");
     var randomQuote = ""
     var translationsPerHour = 5;
+    var spaceBtwQuotes = $("<li>");
 
+    //L.C 4/1
+    //get user translations from local storage
+    var userTranslationsSavedArray = localStorage.getItem("userTranslations"); 
+
+        //keep from erroring if no translations saved in local storage
+        if (!userTranslationsSavedArray) {
+                userTranslationsSavedArray = [];
+            } else {
+                userTranslationsSavedArray = JSON.parse(userTranslationsSavedArray);
+            }
+
+        //Add users quotes/translations into the modal and mobile div 
+        for (i = 0; i < userTranslationsSavedArray.length; i++) {
+            var spaceBtwQuotes = $("<li>");
+            $("#translationsMobile").append(userTranslationsSavedArray[i]);
+            $("#translationsMobile").append(spaceBtwQuotes);
+            $("#translationsMobile").append(spaceBtwQuotes);
+        }
+
+        for (i = 0; i < userTranslationsSavedArray.length; i++) {
+            var spaceBtwQuotes = $("<li>");
+            $("#modalText").append(userTranslationsSavedArray[i]);
+            $("#modalText").append(spaceBtwQuotes);
+            $("#modalText").append(spaceBtwQuotes);
+        }
+
+    //L.C 4/1
+    //error message for too many API requests, timer set for 1 hour
+    function whoops() { 
+        $("#translated").val(' ');
+        $('#badRequestPopup').show();
+        clearStyles();
+        setTimeout(function(){ $('#badRequestPopup').hide();}, 3600000);
+    }
+
+
+    //L.C. 4/2
+    //function to remove special fonts from translator area 
+    function clearStyles() {
+        $("#translated").removeClass("pirateFont");
+        $("#translated").removeClass("cockneyFont");
+        $("#translated").removeClass("cowboyFont");
+        $("#translated").removeClass("oldEngFont");
+        $("#translated").removeClass("chefFont");
+    }
+
+
+    //L.C. 4/2
+    //Click button function to clear local storage 
+
+<<<<<<< HEAD
+=======
+    $('#clearQuotesBtn').click(function () {
+        localStorage.clear();
+    })
+    // Initalize our site, we may tiurn this into a function to play some starting sound effects.
+>>>>>>> master
 
     // Initalize our site, we may tiurn this into a function to play some starting sound effects.
     // EXS 1st April 2020
@@ -82,7 +139,12 @@ $(document).ready(function () {
     $("#pirateTranslation").click(function () {
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
+<<<<<<< HEAD
         translateOurQuote(randomQuote, fullPirateURL, "Pirate One");
+=======
+        translateOurQuote(randomQuote, fullPirateURL);
+        $('#translated').addClass("pirateFont");
+>>>>>>> master
         translatorCountFunction();
     });
 
@@ -93,10 +155,19 @@ $(document).ready(function () {
         translateOurQuote(randomQuote, fullCockneyURL, "");
         translatorCountFunction();
     });
+<<<<<<< HEAD
     $("#chefTranslation").click(function () {
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullChefURL,"chefFont");
+=======
+
+    $("#chefTranslation").click(function () {
+        var fullChefURL = baseURL + chefURL;
+        randomQuote = $('#randomQuote').val();
+        translateOurQuote(randomQuote, fullChefURL);
+        $('#translated').addClass("chefFont");
+>>>>>>> master
         translatorCountFunction();
     });
 
@@ -131,14 +202,29 @@ $(document).ready(function () {
         myURL = translateURL + myQuote;
         $.ajax({
             url: myURL,
+<<<<<<< HEAD
             method: "GET"
+=======
+            error: whoops
+>>>>>>> master
         }).then(function (response) {
             console.log(response);
-            $("#translated").text(response.contents.translated);
 
-            //testing poping up the modal
-            // $("#modalText").text(response.contents.translated);
-            // $('#modal1').show();
+            var translation = response.contents.translated
+            var spaceBtwQuotes2 = $("<li>");
+            
+            $("#translated").text(translation);
+
+            $("#modalText").append(translation);
+            $("#modalText").append(spaceBtwQuotes2);
+
+            $("#translationsMobile").append(translation);
+            $("#translationsMobile").append(spaceBtwQuotes2);
+
+            clearStyles();
+
+            userTranslationsSavedArray.push(translation)
+            localStorage.setItem("userTranslations", JSON.stringify(userTranslationsSavedArray));
 
             // After translation call the attributeSites function
             // This may need expanding with the type of translation performed
@@ -147,7 +233,25 @@ $(document).ready(function () {
         });
     }
 
+<<<<<<< HEAD
     // This area is for the wierd funky functions that for some reason are not callable within document ready
+=======
+
+
+    // function soundEffects() {
+    //     console.log("Sounds Effects");
+    // }
+    // // This area is for the wierd funky functions that for some reason are not callable within document ready
+
+    // function initialize() {
+    //     // Play game start sound
+    //     // playSFX()
+    //     attributedSites();
+    // }
+
+
+    atrributedSites()
+>>>>>>> master
 
     function initPage() {
         atrributedSites();  
