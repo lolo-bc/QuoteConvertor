@@ -193,7 +193,6 @@ $(document).ready(function () {
 
     function initPage() {
         atrributedSites();
-        playSFX(gameStart);
     }
 
     function atrributedSites() {
