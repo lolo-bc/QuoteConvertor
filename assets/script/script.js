@@ -20,11 +20,11 @@ $(document).ready(function () {
     $('.modal').modal();
 
     const baseURL = 'https://api.funtranslations.com/translate/'
-    const cockneyURL = 'cockney.json?text=';
-    const pirateURL = 'pirate.json?text=';
-    const chefURL = 'chef.json?text=';
-    const oldEnglishURL = 'oldenglish.json?text=';
-    const southernURL = 'southern-accent.json?text=';
+    const cockneyURL = baseURL + 'cockney.json?text=';
+    const pirateURL = baseURL + 'pirate.json?text=';
+    const chefURL = baseURL + 'chef.json?text=';
+    const oldEnglishURL = baseURL + 'oldenglish.json?text=';
+    const southernURL = baseURL + 'southern-accent.json?text=';
     const gameStart = new Audio('./assets/sfx/gameStart.mp3');
 
     var randomQuote = ''
@@ -110,81 +110,73 @@ $(document).ready(function () {
         }, 1000);
     };
 
+
     $('#getRandomQuote').click(function () {
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
         }).then(function (response) {
-            console.log(response);
-            console.log(randomQuote);
+            //console.log(response);
+            //console.log(randomQuote);
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
     });
 
-    // These functions are tied into the menu system. After each translation
-    // the code will automatically reduce one from the translation number
-    // EXS added in Chef and Old English 30th March 2020.
-
-    $('#pirateTranslation').click(function () {
-
-        var fullPirateURL = baseURL + pirateURL;
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullPirateURL, 'pirateFont');
-        translatorCountFunction();
-    });
-
-    $('#cockneyTranslation').click(function () {
-        var fullCockneyURL = baseURL + cockneyURL
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullCockneyURL, 'cockneyFont');
-        translatorCountFunction();
-    });
-
-    $('#chefTranslation').click(function () {
-        var fullChefURL = baseURL + chefURL;
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullChefURL, 'chefFont');
-        translatorCountFunction();
-    });
-
-    $('#oldEnglishTranslation').click(function () {
-        var fullOldEnglishURL = baseURL + oldEnglishURL;
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullOldEnglishURL, 'oldEngFont');
-        translatorCountFunction();
-    });
-
-    $('#southernTranslation').click(function () {
-        var fullSouthernURL = baseURL + southernURL;
-        randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullSouthernURL, 'cowboyFont');
-        translatorCountFunction();
-    });
-    // EXS Empty randomQuote area if user clicks on it
+    // clear our random quote on click
     $('#randomQuote').click(function () {
         $('#randomQuote').empty();
     });
 
-    // This function allows us to pass the quote and create an API URL for fun translations
-    //  EXS 27th March 2020
-    function translateOurQuote(randomQuote, translateURL, fontType) {
+    // These functions are tied into the menu system. After each translation
+    // the code will automatically reduce one from the translation number
+    // EXS added in Chef and Old English 30th March 2020.
+    // Here we'll check for the dropdown-content class being click then pass over a parameter to a function
+
+    $('#dropdown1 li').click(function () {
+        console.log(this.id);
+        switch (this.id) {
+            case 'pirateTranslation':
+                translateOurQuote (pirateURL,'pirateFont');
+                break;
+            case 'cockneyTranslation':
+                translateOurQuote (cockneyURL,'cockneyFont');
+                break;
+            case 'chefTranslation':
+                translateOurQuote (chefURL, 'chefFont');
+                break;
+            case 'oldEnglishTranslation':
+                translateOurQuote (oldEnglishURL, 'oldEngFont')
+                break;
+            case 'southernTranslation':
+                translateOurQuote (southernURL, 'cowboyFont')
+                break;
+            default:
+                break;
+        }
+    })
+
+    // function translateOurQuote(randomQuote, translateURL, fontType) {
+    function translateOurQuote (translateURL, fontType) {
         // Clear any existing CSS font styles.
         clearStyles();
         // Add our new CSS font style class.
         $('#translated').addClass(fontType);
-        myQuote = encodeURI(randomQuote);
+        myQuote = encodeURI($('#randomQuote').val());
+        //console.log ("Quote To Translate: ", myQuote);
+        // myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
+        console.log ('translate url: ', myURL);
         $.ajax({
             url: myURL,
             method: 'GET',
             error: whoops
         }).then(function (response) {
-            console.log(response);
+            //console.log(response);
             var translation = response.contents.translated
 
             var spaceBtwQuotes2 = $("<br>");
-            
+
             //add quote onto the textarea do
             $("#translated").text(translation);
 
@@ -202,8 +194,6 @@ $(document).ready(function () {
         });
     }
 
-    atrributedSites()
-
     function initPage() {
         atrributedSites();
     }
@@ -217,7 +207,7 @@ $(document).ready(function () {
     }
 
     function playSFX(sfxName) {
-        console.log('Playing sound effects!');
+        //console.log('Playing sound effects!');
         sfxName.play();
     }
     // End of jquery ready function    
