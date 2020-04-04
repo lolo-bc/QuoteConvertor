@@ -47,7 +47,9 @@ reset.css - Eric Myer https://meyerweb.com/eric/tools/css/reset/<br/>
 translation API - https://funtranslations.com/<br/>
 Quote API - https://favqs.com/api/qotd<br/>
 Materialize - https://materializecss.com/<br/>
-Development - Lauren Cameron https://github.com/lolo-bc <br/>
+## Development: <br/>
+
+              Lauren Cameron https://github.com/lolo-bc <br/>
               Tevin Ward https://github.com/TevinWard7<br/>
               Yalmar Mairena https://github.com/YalmarMV<br/>
               Eddie Saunders https://github.com/SaundersEddie <br/>
