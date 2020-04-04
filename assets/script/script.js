@@ -25,7 +25,7 @@ $(document).ready(function () {
     const chefURL = baseURL + 'chef.json?text=';
     const oldEnglishURL = baseURL + 'oldenglish.json?text=';
     const fuddURL = baseURL + 'fudd.json?text=';
-    const piratesAudio = new Audio(',/assets/sfx/pirates.mp3');
+    const piratesAudio = new Audio('./assets/sfx/pirates.mp3');
     const cockneyAudio = new Audio('./assets/sfx/cockney.mp3');
     const chefAudio = new Audio('./assets/sfx/chef.mp3');
     const oldEnglandAudio = new Audio('./assets/sfx/oldEnglish.mp3');
