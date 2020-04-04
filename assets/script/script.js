@@ -35,6 +35,8 @@ $(document).ready(function () {
     var randomQuote = ''
     var translationsPerHour = 5;
     var spaceBtwQuotes = $('<li>');
+    var myTime = moment();
+    console.log (myTime.format('HHmm'));
 
     //L.C 4/1
     //get user translations from local storage
