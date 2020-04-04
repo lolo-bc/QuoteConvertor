@@ -25,18 +25,17 @@ $(document).ready(function () {
     const chefURL = baseURL + 'chef.json?text=';
     const oldEnglishURL = baseURL + 'oldenglish.json?text=';
     const fuddURL = baseURL + 'fudd.json?text=';
-    const testAudio = new Audio('./assets/sfx/gameStart.mp3');
-    // const pirateSound = new Audio()
-    // const cockneySound = new Audio()
-    // const chefSound = new Audio();
-    // const oldEnglandSound = new Audio()
+    const piratesAudio = new Audio(',/assets/sfx/pirates.mp3');
+    const cockneyAudio = new Audio('./assets/sfx/cockney.mp3');
+    const chefAudio = new Audio('./assets/sfx/chef.mp3');
+    const oldEnglandAudio = new Audio('./assets/sfx/oldEnglish.mp3');
     const fuddAudio = new Audio('./assets/sfx/fudd.mp3');
 
     var randomQuote = ''
     var translationsPerHour = 5;
     var spaceBtwQuotes = $('<li>');
     var myTime = moment();
-    console.log (myTime.format('HHmm'));
+    console.log(myTime.format('HHmm'));
 
     //L.C 4/1
     //get user translations from local storage
@@ -123,7 +122,7 @@ $(document).ready(function () {
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
         }).then(function (response) {
-             randomQuote = (response.quote.body);
+            randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
     });
@@ -139,19 +138,19 @@ $(document).ready(function () {
         console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
-                translateOurQuote (pirateURL,'pirateFont', testAudio);
+                translateOurQuote(pirateURL, 'pirateFont', piratesAudio);
                 break;
             case 'cockneyTranslation':
-                translateOurQuote (cockneyURL,'cockneyFont', testAudio);
+                translateOurQuote(cockneyURL, 'cockneyFont', cockneyAudio);
                 break;
             case 'chefTranslation':
-                translateOurQuote (chefURL, 'chefFont', testAudio);
+                translateOurQuote(chefURL, 'chefFont', chefAudio);
                 break;
             case 'oldEnglishTranslation':
-                translateOurQuote (oldEnglishURL, 'oldEngFont', testAudio)
+                translateOurQuote(oldEnglishURL, 'oldEngFont', oldEnglandAudio);
                 break;
             case 'fuddTranslation':
-                translateOurQuote (fuddURL, 'cowboyFont', fuddAudio)
+                translateOurQuote(fuddURL, 'cowboyFont', fuddAudio)
                 break;
             default:
                 break;
@@ -159,7 +158,7 @@ $(document).ready(function () {
     })
 
     // function translateOurQuote(randomQuote, translateURL, fontType) {
-    function translateOurQuote (translateURL, fontType, audioFile) {
+    function translateOurQuote(translateURL, fontType, audioFile) {
         // Clear any existing CSS font styles.
         clearStyles();
         // Add our new CSS font style class.
