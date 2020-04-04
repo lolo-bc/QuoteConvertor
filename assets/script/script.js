@@ -34,8 +34,8 @@ $(document).ready(function () {
     var randomQuote = ''
     var translationsPerHour = 5;
     var spaceBtwQuotes = $('<li>');
-    var myTime = moment();
-    // console.log(myTime.format('HHmm'));
+    var currentTime = moment().format("H");
+    var storedTime = localStorage.getItem("limitTime");
 
     //L.C 4/1
     //get user translations from local storage
@@ -90,33 +90,42 @@ $(document).ready(function () {
     // EXS 1st April 2020 - Page initalize
     initPage();
 
+    // T.W. Check time before display
+    function checkTimeBeforeDisplayingIt() {
+        if (currentTime - storedTime < 1) {
+            $('#translateCounter').text(0);
+        }
+    }
+
+    checkTimeBeforeDisplayingIt()
+
+    // T.W. Checks time to see if it's been over an hour since last translates ran out
+    function checkTimeBeforeCountingTranslate() {
+        if (currentTime - storedTime >= 1) {
+            countOurTranslate();
+        }
+        else {
+            $('#translateCounter').text(0);
+        }
+    };
+
     // T.W. 3/29
     // Function To Count Each Translate
-    function translatorCountFunction() {
+    function countOurTranslate() {
+
         if (translationsPerHour === 0) {
+            localStorage.setItem("limitTime", currentTime);
             countDown();
             return false;
         }
+
         else {
             translationsPerHour--;
             $('#translateCounter').text(translationsPerHour);
         }
     };
 
-    // T.W. 3/30
-    // Resets Translates To 5 After One Hour
-    function countDown() {
-        var counter = 3600;
-        var oneHourCountDown = setInterval(function () {
-            // console.log("CountDown: " + counter);
-            counter--
-            if (counter === 0) {
-                clearInterval(oneHourCountDown);
-                $('#translateCounter').text(5);
-            }
-        }, 1000);
-    };
-
+    randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
        $('#translated').empty();
@@ -141,6 +150,7 @@ $(document).ready(function () {
         // console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
+
                 translateOurQuote(pirateURL, 'pirateFont', piratesAudio);
                 break;
             case 'cockneyTranslation':
@@ -170,6 +180,9 @@ $(document).ready(function () {
         myQuote = encodeURI($('#randomQuote').val());
         myURL = translateURL + myQuote;
 
+        // T.W. 4/4 Check time to see if we can count this translate or we have to wait an hour
+        checkTimeBeforeCountingTranslate();
+
         $.ajax({
             url: myURL,
             method: 'GET',
@@ -194,7 +207,6 @@ $(document).ready(function () {
 
             userTranslationsSavedArray.push(translation)
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
-            translatePerformed = true;
         });
     }
 
