@@ -69,12 +69,6 @@ $(document).ready(function () {
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
-        // Investigate .removeClass() which removes all
-        // $("#translated").removeClass("pirateFont");
-        // $("#translated").removeClass("cockneyFont");
-        // $("#translated").removeClass("cowboyFont");
-        // $("#translated").removeClass("oldEngFont");
-        // $("#translated").removeClass("chefFont");
         $('#translated').removeClass();
     }
 
@@ -115,7 +109,6 @@ $(document).ready(function () {
     };
 
     $('#getRandomQuote').click(function () {
-        playSFX(gameStart);
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
@@ -131,7 +124,6 @@ $(document).ready(function () {
     // the code will automatically reduce one from the translation number
     // EXS added in Chef and Old English 30th March 2020.
     $('#pirateTranslation').click(function () {
-        clearStyles();
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullPirateURL, 'pirateFont');
@@ -139,7 +131,6 @@ $(document).ready(function () {
     });
 
     $('#cockneyTranslation').click(function () {
-        clearStyles();
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullCockneyURL, 'cockneyFont');
@@ -147,7 +138,6 @@ $(document).ready(function () {
     });
 
     $('#chefTranslation').click(function () {
-        clearStyles();
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullChefURL, 'chefFont');
@@ -155,7 +145,6 @@ $(document).ready(function () {
     });
 
     $('#oldEnglishTranslation').click(function () {
-        clearStyles();
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullOldEnglishURL, 'oldEngFont');
@@ -163,7 +152,6 @@ $(document).ready(function () {
     });
 
     $('#southernTranslation').click(function () {
-        clearStyles();
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullSouthernURL, 'cowboyFont');
@@ -177,6 +165,9 @@ $(document).ready(function () {
     // This function allows us to pass the quote and create an API URL for fun translations
     //  EXS 27th March 2020
     function translateOurQuote(randomQuote, translateURL, fontType) {
+        // Clear any existing CSS font styles.
+        clearStyles();
+        // Add our new CSS font style class.
         $('#translated').addClass(fontType);
         myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
