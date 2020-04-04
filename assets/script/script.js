@@ -24,13 +24,12 @@ $(document).ready(function () {
     const pirateURL = baseURL + 'pirate.json?text=';
     const chefURL = baseURL + 'chef.json?text=';
     const oldEnglishURL = baseURL + 'oldenglish.json?text=';
-    const southernURL = baseURL + 'southern-accent.json?text=';
-    const testAudio = new Audio('./assets/sfx/gameStart.mp3');
-    // const pirateSound = new Audio()
-    // const cockneySound = new Audio()
-    // const chefSound = new Audio();
-    // const oldEnglandSound = new Audio()
-    // const southernSound = new Audio()
+    const fuddURL = baseURL + 'fudd.json?text=';
+    const piratesAudio = new Audio('./assets/sfx/pirates.mp3');
+    const cockneyAudio = new Audio('./assets/sfx/cockney.mp3');
+    const chefAudio = new Audio('./assets/sfx/chef.mp3');
+    const oldEnglandAudio = new Audio('./assets/sfx/oldEnglish.mp3');
+    const fuddAudio = new Audio('./assets/sfx/fudd.mp3');
 
     var randomQuote = ''
     var translationsPerHour = 5;
@@ -67,9 +66,10 @@ $(document).ready(function () {
     //L.C 4/1
     //error message for too many API requests, timer set for 1 hour
     function whoops() {
-        $('#translated').val(' ');
+        console.log ("Error with pulling translation");
         $('#badRequestPopup').show();
         clearStyles();
+        $('#translated').text("Error! Abort! Abort!");
         setTimeout(function () { $('#badRequestPopup').hide(); }, 3600000);
     }
 
@@ -128,6 +128,7 @@ $(document).ready(function () {
     randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
+       $('#translated').empty();
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
@@ -139,28 +140,30 @@ $(document).ready(function () {
 
     // clear our random quote on click
     $('#randomQuote').click(function () {
-        $('#randomQuote').empty();
+       $('#randomQuote').empty();
+       $('#translated').empty();
     });
 
     // Check on which list item has been clicked on the dropdown
     // Then call the translatefunction with appropriate parameters  
     $('#dropdown1 li').click(function () {
-        console.log(this.id);
+        // console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
-                translateOurQuote(pirateURL, 'pirateFont', testAudio);
+
+                translateOurQuote(pirateURL, 'pirateFont', piratesAudio);
                 break;
             case 'cockneyTranslation':
-                translateOurQuote(cockneyURL, 'cockneyFont', testAudio);
+                translateOurQuote(cockneyURL, 'cockneyFont', cockneyAudio);
                 break;
             case 'chefTranslation':
-                translateOurQuote(chefURL, 'chefFont', testAudio);
+                translateOurQuote(chefURL, 'chefFont', chefAudio);
                 break;
             case 'oldEnglishTranslation':
-                translateOurQuote(oldEnglishURL, 'oldEngFont', testAudio)
+                translateOurQuote(oldEnglishURL, 'oldEngFont', oldEnglandAudio);
                 break;
-            case 'southernTranslation':
-                translateOurQuote(southernURL, 'cowboyFont', testAudio)
+            case 'fuddTranslation':
+                translateOurQuote(fuddURL, 'cowboyFont', fuddAudio)
                 break;
             default:
                 break;
@@ -170,9 +173,9 @@ $(document).ready(function () {
     // function translateOurQuote(randomQuote, translateURL, fontType) {
     function translateOurQuote(translateURL, fontType, audioFile) {
         // Clear any existing CSS font styles.
-        clearStyles();
+        //clearStyles();
         // Add our new CSS font style class.
-        $('#translated').addClass(fontType);
+       
         // We maybe able to squish the myQuote calculation directly into the myURL calculation
         myQuote = encodeURI($('#randomQuote').val());
         myURL = translateURL + myQuote;
@@ -185,9 +188,9 @@ $(document).ready(function () {
             method: 'GET',
             error: whoops
         }).then(function (response) {
-            // Play Audio
             playSFX(audioFile);
-            // Get our returned translation and stash in for later
+            // Get our returned translation, set the translated font and display
+            $('#translated').addClass(fontType);
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
 
