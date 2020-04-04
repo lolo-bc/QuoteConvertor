@@ -49,7 +49,7 @@ Quote API - https://favqs.com/api/qotd<br/>
 Materialize - https://materializecss.com/<br/>
 ## Development: <br/>
 
-              Lauren Cameron https://github.com/lolo-bc <br/>
-              Tevin Ward https://github.com/TevinWard7<br/>
-              Yalmar Mairena https://github.com/YalmarMV<br/>
-              Eddie Saunders https://github.com/SaundersEddie <br/>
+Lauren Cameron  https://github.com/lolo-bc <br/>
+Tevin Ward      https://github.com/TevinWard7<br/>
+Yalmar Mairena  https://github.com/YalmarMV<br/>
+Eddie Saunders  https://github.com/SaundersEddie <br/>
