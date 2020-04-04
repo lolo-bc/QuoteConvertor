@@ -25,7 +25,12 @@ $(document).ready(function () {
     const chefURL = baseURL + 'chef.json?text=';
     const oldEnglishURL = baseURL + 'oldenglish.json?text=';
     const southernURL = baseURL + 'southern-accent.json?text=';
-    const gameStart = new Audio('./assets/sfx/gameStart.mp3');
+    const testAudio = new Audio('./assets/sfx/gameStart.mp3');
+    // const pirateSound = new Audio()
+    // const cockneySound = new Audio()
+    // const chefSound = new Audio();
+    // const oldEnglandSound = new Audio()
+    // const southernSound = new Audio()
 
     var randomQuote = ''
     var translationsPerHour = 5;
@@ -116,9 +121,7 @@ $(document).ready(function () {
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
         }).then(function (response) {
-            //console.log(response);
-            //console.log(randomQuote);
-            randomQuote = (response.quote.body);
+             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
     });
@@ -128,28 +131,25 @@ $(document).ready(function () {
         $('#randomQuote').empty();
     });
 
-    // These functions are tied into the menu system. After each translation
-    // the code will automatically reduce one from the translation number
-    // EXS added in Chef and Old English 30th March 2020.
-    // Here we'll check for the dropdown-content class being click then pass over a parameter to a function
-
+    // Check on which list item has been clicked on the dropdown
+    // Then call the translatefunction with appropriate parameters  
     $('#dropdown1 li').click(function () {
         console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
-                translateOurQuote (pirateURL,'pirateFont');
+                translateOurQuote (pirateURL,'pirateFont', testAudio);
                 break;
             case 'cockneyTranslation':
-                translateOurQuote (cockneyURL,'cockneyFont');
+                translateOurQuote (cockneyURL,'cockneyFont', testAudio);
                 break;
             case 'chefTranslation':
-                translateOurQuote (chefURL, 'chefFont');
+                translateOurQuote (chefURL, 'chefFont', testAudio);
                 break;
             case 'oldEnglishTranslation':
-                translateOurQuote (oldEnglishURL, 'oldEngFont')
+                translateOurQuote (oldEnglishURL, 'oldEngFont', testAudio)
                 break;
             case 'southernTranslation':
-                translateOurQuote (southernURL, 'cowboyFont')
+                translateOurQuote (southernURL, 'cowboyFont', testAudio)
                 break;
             default:
                 break;
@@ -157,24 +157,24 @@ $(document).ready(function () {
     })
 
     // function translateOurQuote(randomQuote, translateURL, fontType) {
-    function translateOurQuote (translateURL, fontType) {
+    function translateOurQuote (translateURL, fontType, audioFile) {
         // Clear any existing CSS font styles.
         clearStyles();
         // Add our new CSS font style class.
         $('#translated').addClass(fontType);
+        // We maybe able to squish the myQuote calculation directly into the myURL calculation
         myQuote = encodeURI($('#randomQuote').val());
-        //console.log ("Quote To Translate: ", myQuote);
-        // myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
-        console.log ('translate url: ', myURL);
+
         $.ajax({
             url: myURL,
             method: 'GET',
             error: whoops
         }).then(function (response) {
-            //console.log(response);
+            // Play Audio
+            playSFX(audioFile);
+            // Get our returned translation and stash in for later
             var translation = response.contents.translated
-
             var spaceBtwQuotes2 = $("<br>");
 
             //add quote onto the textarea do
@@ -194,6 +194,7 @@ $(document).ready(function () {
         });
     }
 
+    // Initialize our page, created as a funciton in case we need to do something else in future
     function initPage() {
         atrributedSites();
     }
@@ -207,7 +208,6 @@ $(document).ready(function () {
     }
 
     function playSFX(sfxName) {
-        //console.log('Playing sound effects!');
         sfxName.play();
     }
     // End of jquery ready function    
