@@ -3,9 +3,15 @@
 A small mobile first application that allows the user to get or enter a random quote and translate it to a "language" of their choice selected from a menu system
 
 ## User Story and Accepance Crieria
-as a user who needs to have quirky and unique, I want to translate my own text or generate a random quote and have it translated to either pirate speak, cockney, old english, sweedish chef (from the muppets), or THE LAST ONE, so that I can view these translations at any time, even after I have closed the window. 
 
-### API's used"
+```
+As a user who needs to have quirky and unique
+I want to translate my own text or generate a random quote
+Then have it translated to a language I select and have it saved
+I can then view these translations at any time, even after I have closed the window.
+```
+
+## API's used
 
 Quote API to generate text to be translated if the user does not what to input thier own text
 
