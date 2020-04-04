@@ -76,6 +76,8 @@ $(document).ready(function () {
     //Click button function to clear local storage 
     $('#clearQuotesBtn').click(function () {
         localStorage.clear();
+        $('modal1').hide();
+        location.reload(true);
     })
 
     // EXS 1st April 2020 - Page initalize
@@ -123,7 +125,9 @@ $(document).ready(function () {
     // These functions are tied into the menu system. After each translation
     // the code will automatically reduce one from the translation number
     // EXS added in Chef and Old English 30th March 2020.
+
     $('#pirateTranslation').click(function () {
+
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
         translateOurQuote(randomQuote, fullPirateURL, 'pirateFont');
@@ -178,17 +182,26 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
             var translation = response.contents.translated
-            var spaceBtwQuotes2 = $('<li>');
-            $('#translated').text(translation);
-            $('#modalText').append(translation);
-            $('#modalText').append(spaceBtwQuotes2);
-            $('#translationsMobile').append(translation);
-            $('#translationsMobile').append(spaceBtwQuotes2);
+
+            var spaceBtwQuotes2 = $("<br>");
+            
+            //add quote onto the textarea do
+            $("#translated").text(translation);
+
+            //add quote into the modal on full web
+            $("#modalText").append(translation);
+            $("#modalText").append(spaceBtwQuotes2);
+
+            //add quote into the row div on mobile
+            $("#translationsMobile").append(translation);
+            $("#translationsMobile").append(spaceBtwQuotes2);
+
             userTranslationsSavedArray.push(translation)
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
             translatePerformed = true;
         });
     }
+
     atrributedSites()
 
     function initPage() {
