@@ -3,6 +3,7 @@
 A small mobile first application that allows the user to get or enter a random quote and translate it to a "language" of their choice selected from a menu system
 
 ## User Story and Accepance Crieria
+as a user who needs to have random 
 
 
 ## Current Build Status
