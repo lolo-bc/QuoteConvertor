@@ -31,6 +31,7 @@ $(document).ready(function () {
     const oldEnglandAudio = new Audio('./assets/sfx/oldEnglish.mp3');
     const fuddAudio = new Audio('./assets/sfx/fudd.mp3');
 
+    var lockedOut = false;
     var randomQuote = ''
     var translationsPerHour = 5;
     var spaceBtwQuotes = $('<li>');
@@ -66,11 +67,17 @@ $(document).ready(function () {
     //L.C 4/1
     //error message for too many API requests, timer set for 1 hour
     function whoops() {
-        console.log ("Error with pulling translation");
+        lockedOut = true;
+        
+        console.log("Error with pulling translation");
         $('#badRequestPopup').show();
-        clearStyles();
-        $('#translated').text("Error! Abort! Abort!");
-        setTimeout(function () { $('#badRequestPopup').hide(); }, 3600000);
+        //clearStyles();
+        // $('#translated').text("Error! Abort! Abort!");
+        setTimeout(function () { 
+            $('#badRequestPopup').hide(); }, 5000); // this was 3600000
+            console.log ("Timeout complete");
+            console.log (lockedOut);
+            lockedOut = false;
     }
 
     //L.C. 4/2
@@ -119,7 +126,7 @@ $(document).ready(function () {
 
 
     $('#getRandomQuote').click(function () {
-       $('#translated').empty();
+        //$('#translated').empty();
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
@@ -131,8 +138,8 @@ $(document).ready(function () {
 
     // clear our random quote on click
     $('#randomQuote').click(function () {
-       $('#randomQuote').empty();
-       $('#translated').empty();
+        $('#randomQuote').empty();
+        $('#translated').empty();
     });
 
     // Check on which list item has been clicked on the dropdown
@@ -165,7 +172,7 @@ $(document).ready(function () {
         // Clear any existing CSS font styles.
         //clearStyles();
         // Add our new CSS font style class.
-       
+
         // We maybe able to squish the myQuote calculation directly into the myURL calculation
         myQuote = encodeURI($('#randomQuote').val());
         myURL = translateURL + myQuote;
@@ -175,9 +182,10 @@ $(document).ready(function () {
             method: 'GET',
             error: whoops
         }).then(function (response) {
+            console.log("Translate our text");
             playSFX(audioFile);
             // Get our returned translation, set the translated font and display
-            $('#translated').addClass(fontType);
+            //$('#translated').addClass(fontType);
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
 
