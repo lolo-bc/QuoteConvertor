@@ -19,63 +19,58 @@ $(document).ready(function () {
     //code from materialze to make modal trigger work 
     $('.modal').modal();
 
-    const baseURL = "https://api.funtranslations.com/translate/"
-    const cockneyURL = "cockney.json?text=";
-    const pirateURL = "pirate.json?text=";
-    const chefURL = "chef.json?text=";
-    const oldEnglishURL = "oldenglish.json?text=";
-    const southernURL = "southern-accent.json?text=";
-    const gameStart = new Audio("./assets/sfx/gameStart.mp3");
-  
-    var randomQuote = ""
+    const baseURL = 'https://api.funtranslations.com/translate/'
+    const cockneyURL = 'cockney.json?text=';
+    const pirateURL = 'pirate.json?text=';
+    const chefURL = 'chef.json?text=';
+    const oldEnglishURL = 'oldenglish.json?text=';
+    const southernURL = 'southern-accent.json?text=';
+    const gameStart = new Audio('./assets/sfx/gameStart.mp3');
+
+    var randomQuote = ''
     var translationsPerHour = 5;
-    var spaceBtwQuotes = $("<li>");
+    var spaceBtwQuotes = $('<li>');
 
     //L.C 4/1
     //get user translations from local storage
-    var userTranslationsSavedArray = localStorage.getItem("userTranslations"); 
+    var userTranslationsSavedArray = localStorage.getItem('userTranslations');
 
-        //keep from erroring if no translations saved in local storage
-        if (!userTranslationsSavedArray) {
-                userTranslationsSavedArray = [];
-            } else {
-                userTranslationsSavedArray = JSON.parse(userTranslationsSavedArray);
-            }
+    //keep from erroring if no translations saved in local storage
+    if (!userTranslationsSavedArray) {
+        userTranslationsSavedArray = [];
+    } else {
+        userTranslationsSavedArray = JSON.parse(userTranslationsSavedArray);
+    }
 
-        //Add users quotes/translations into the modal and mobile div 
-        for (i = 0; i < userTranslationsSavedArray.length; i++) {
-            var spaceBtwQuotes = $("<li>");
-            $("#translationsMobile").append(userTranslationsSavedArray[i]);
-            $("#translationsMobile").append(spaceBtwQuotes);
-            $("#translationsMobile").append(spaceBtwQuotes);
-        }
+    //Add users quotes/translations into the modal and mobile div 
+    for (i = 0; i < userTranslationsSavedArray.length; i++) {
+        var spaceBtwQuotes = $('<li>');
+        $('#translationsMobile').append(userTranslationsSavedArray[i]);
+        $('#translationsMobile').append(spaceBtwQuotes);
+        $('#translationsMobile').append(spaceBtwQuotes);
+    }
 
-        for (i = 0; i < userTranslationsSavedArray.length; i++) {
-            var spaceBtwQuotes = $("<li>");
-            $("#modalText").append(userTranslationsSavedArray[i]);
-            $("#modalText").append(spaceBtwQuotes);
-            $("#modalText").append(spaceBtwQuotes);
-        }
+    for (i = 0; i < userTranslationsSavedArray.length; i++) {
+        var spaceBtwQuotes = $("<li>");
+        $('#modalText').append(userTranslationsSavedArray[i]);
+        $('#modalText').append(spaceBtwQuotes);
+        $('#modalText').append(spaceBtwQuotes);
+    }
 
     //L.C 4/1
     //error message for too many API requests, timer set for 1 hour
-    function whoops() { 
-        $("#translated").val(' ');
+    function whoops() {
+        $('#translated').val(' ');
         $('#badRequestPopup').show();
         clearStyles();
-        setTimeout(function(){ $('#badRequestPopup').hide();}, 3600000);
+        setTimeout(function () { $('#badRequestPopup').hide(); }, 3600000);
     }
 
     //L.C. 4/2
     //function to remove special fonts from translator area 
     function clearStyles() {
-        $("#translated").removeClass();
-        // $("#translated").removeClass("cockneyFont");
-        // $("#translated").removeClass("cowboyFont");
-        // $("#translated").removeClass("oldEngFont");
-        // $("#translated").removeClass("chefFont");
+        $('#translated').removeClass();
     }
-
 
     //L.C. 4/2
     //Click button function to clear local storage 
@@ -84,7 +79,7 @@ $(document).ready(function () {
         $('modal1').hide();
         location.reload(true);
     })
- 
+
     // EXS 1st April 2020 - Page initalize
     initPage();
 
@@ -97,7 +92,7 @@ $(document).ready(function () {
         }
         else {
             translationsPerHour--;
-            $("#translateCounter").text(translationsPerHour);
+            $('#translateCounter').text(translationsPerHour);
         }
     };
 
@@ -110,16 +105,15 @@ $(document).ready(function () {
             counter--
             if (counter === 0) {
                 clearInterval(oneHourCountDown);
-                $("#translateCounter").text(5);
+                $('#translateCounter').text(5);
             }
         }, 1000);
     };
 
-    $("#getRandomQuote").click(function () {
-        playSFX(gameStart);
+    $('#getRandomQuote').click(function () {
         $.ajax({
-            url: "https://favqs.com/api/qotd",
-            method: "GET"
+            url: 'https://favqs.com/api/qotd',
+            method: 'GET'
         }).then(function (response) {
             console.log(response);
             console.log(randomQuote);
@@ -131,70 +125,64 @@ $(document).ready(function () {
     // These functions are tied into the menu system. After each translation
     // the code will automatically reduce one from the translation number
     // EXS added in Chef and Old English 30th March 2020.
-    $("#pirateTranslation").click(function () {
-        clearStyles();
+
+    $('#pirateTranslation').click(function () {
+
         var fullPirateURL = baseURL + pirateURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullPirateURL,"pirateFont");
-        //$('#translated').addClass("pirateFont");
+        translateOurQuote(randomQuote, fullPirateURL, 'pirateFont');
         translatorCountFunction();
     });
 
-    $("#cockneyTranslation").click(function () {
-        clearStyles();
+    $('#cockneyTranslation').click(function () {
         var fullCockneyURL = baseURL + cockneyURL
         randomQuote = $('#randomQuote').val();
-        //$('#translated').addClass("cockneyFont");
-        translateOurQuote(randomQuote, fullCockneyURL, "cockneyFont");
+        translateOurQuote(randomQuote, fullCockneyURL, 'cockneyFont');
         translatorCountFunction();
     });
-    $("#chefTranslation").click(function () {
-        clearStyles();
+
+    $('#chefTranslation').click(function () {
         var fullChefURL = baseURL + chefURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullChefURL,"chefFont");
+        translateOurQuote(randomQuote, fullChefURL, 'chefFont');
         translatorCountFunction();
     });
 
-    $("#oldEnglishTranslation").click(function () {
-        clearStyles();
+    $('#oldEnglishTranslation').click(function () {
         var fullOldEnglishURL = baseURL + oldEnglishURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullOldEnglishURL, "oldEnglishFont");
+        translateOurQuote(randomQuote, fullOldEnglishURL, 'oldEngFont');
         translatorCountFunction();
     });
 
-    $("#southernTranslation").click(function () {
-        clearStyles();
+    $('#southernTranslation').click(function () {
         var fullSouthernURL = baseURL + southernURL;
         randomQuote = $('#randomQuote').val();
-        translateOurQuote(randomQuote, fullSouthernURL, "cowboyFont");
+        translateOurQuote(randomQuote, fullSouthernURL, 'cowboyFont');
         translatorCountFunction();
     });
     // EXS Empty randomQuote area if user clicks on it
-    $("#randomQuote").click (function () {
-        $("#randomQuote").empty();
+    $('#randomQuote').click(function () {
+        $('#randomQuote').empty();
     });
 
     // This function allows us to pass the quote and create an API URL for fun translations
     //  EXS 27th March 2020
-    // Adding random comment to test git push
     function translateOurQuote(randomQuote, translateURL, fontType) {
-        //console.log (randomQuote, translateURL);
-        // clear any classes we've added for languages
-        $("#translated").removeClass();
-        //$("#translated").addClass(fontType);
-        $("#translated").css("font-family:", fontType);
+        // Clear any existing CSS font styles.
+        clearStyles();
+        // Add our new CSS font style class.
+        $('#translated').addClass(fontType);
         myQuote = encodeURI(randomQuote);
         myURL = translateURL + myQuote;
         $.ajax({
             url: myURL,
-            method: "GET",
+            method: 'GET',
             error: whoops
         }).then(function (response) {
             console.log(response);
-
             var translation = response.contents.translated
+
             var spaceBtwQuotes2 = $("<br>");
             
             //add quote onto the textarea do
@@ -208,13 +196,8 @@ $(document).ready(function () {
             $("#translationsMobile").append(translation);
             $("#translationsMobile").append(spaceBtwQuotes2);
 
-
             userTranslationsSavedArray.push(translation)
-            localStorage.setItem("userTranslations", JSON.stringify(userTranslationsSavedArray));
-
-            // After translation call the attributeSites function
-            // This may need expanding with the type of translation performed
-            // atrributedSites();
+            localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
             translatePerformed = true;
         });
     }
@@ -222,21 +205,19 @@ $(document).ready(function () {
     atrributedSites()
 
     function initPage() {
-        atrributedSites();  
-        playSFX(gameStart);
+        atrributedSites();
     }
-    
+
     function atrributedSites() {
         // This function will display the attribute links required for API access
         var funTranslationsAPI = '<a href="http://funtranslations.com" target="_blank">fun translations</a>';
         var quoteAPI = '<a href="https://favqs.com/" target="_blank" >fave quotes</a>';
         attributeSites = 'Quotes supplied by ' + quoteAPI + '. Translation supplied by ' + funTranslationsAPI;
-        // console.log (attributeSites);
-        $("#attribute-site").html(attributeSites);
+        $('#attribute-site').html(attributeSites);
     }
 
     function playSFX(sfxName) {
-        console.log("Playing sound effects!");
+        console.log('Playing sound effects!');
         sfxName.play();
     }
     // End of jquery ready function    
