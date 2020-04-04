@@ -24,13 +24,13 @@ $(document).ready(function () {
     const pirateURL = baseURL + 'pirate.json?text=';
     const chefURL = baseURL + 'chef.json?text=';
     const oldEnglishURL = baseURL + 'oldenglish.json?text=';
-    const southernURL = baseURL + 'southern-accent.json?text=';
+    const fuddURL = baseURL + 'fudd.json?text=';
     const testAudio = new Audio('./assets/sfx/gameStart.mp3');
     // const pirateSound = new Audio()
     // const cockneySound = new Audio()
     // const chefSound = new Audio();
     // const oldEnglandSound = new Audio()
-    // const southernSound = new Audio()
+    const fuddAudio = new Audio('./assets/sfx/fudd.mp3');
 
     var randomQuote = ''
     var translationsPerHour = 5;
@@ -150,8 +150,8 @@ $(document).ready(function () {
             case 'oldEnglishTranslation':
                 translateOurQuote (oldEnglishURL, 'oldEngFont', testAudio)
                 break;
-            case 'southernTranslation':
-                translateOurQuote (southernURL, 'cowboyFont', testAudio)
+            case 'fuddTranslation':
+                translateOurQuote (fuddURL, 'cowboyFont', fuddAudio)
                 break;
             default:
                 break;
