@@ -31,7 +31,7 @@ $(document).ready(function () {
     const oldEnglandAudio = new Audio('./assets/sfx/oldEnglish.mp3');
     const fuddAudio = new Audio('./assets/sfx/fudd.mp3');
 
-    var lockedOut = false;
+    var lockedOut = false; // EXS working on solution for clearing text, but retaining locked out message
     var randomQuote = ''
     var translationsPerHour = 5;
     var spaceBtwQuotes = $('<li>');
@@ -68,15 +68,14 @@ $(document).ready(function () {
     //error message for too many API requests, timer set for 1 hour
     function whoops() {
         lockedOut = true;
-        
+        localStorage.setItem ('LockedOut', lockedOut);
         console.log("Error with pulling translation");
         $('#badRequestPopup').show();
         //clearStyles();
         // $('#translated').text("Error! Abort! Abort!");
         setTimeout(function () { 
-            $('#badRequestPopup').hide(); }, 5000); // this was 3600000
-            console.log ("Timeout complete");
-            console.log (lockedOut);
+            $('#badRequestPopup').hide(); }, 3600000); // this was 3600000
+            console.log ("Timeout complete: ", lockedOut);
             lockedOut = false;
     }
 
@@ -119,13 +118,11 @@ $(document).ready(function () {
     // T.W. 3/29
     // Function To Count Each Translate
     function countOurTranslate() {
-
         if (translationsPerHour === 0) {
             localStorage.setItem("limitTime", currentTime);
-            countDown();
+           // countDown(); EXS 4th April 2020  commented line out as countDown() does not exist as a function
             return false;
         }
-
         else {
             translationsPerHour--;
             $('#translateCounter').text(translationsPerHour);
@@ -135,7 +132,10 @@ $(document).ready(function () {
     randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
-        //$('#translated').empty();
+        console.log ("Getting Quote Locked Out Status: ", lockedOut);
+        if (lockedOut) {
+            $('#badRequestPopup').show();
+         } else {        
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
@@ -143,12 +143,18 @@ $(document).ready(function () {
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
+        }        
+
     });
 
     // clear our random quote on click
     $('#randomQuote').click(function () {
+        if (lockedOut) {
+            $('#badRequestPopup').show();
+        } else {
         $('#randomQuote').empty();
         $('#translated').empty();
+        }
     });
 
     // Check on which list item has been clicked on the dropdown
@@ -157,7 +163,6 @@ $(document).ready(function () {
         // console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
-
                 translateOurQuote(pirateURL, 'pirateFont', piratesAudio);
                 break;
             case 'cockneyTranslation':
@@ -189,16 +194,17 @@ $(document).ready(function () {
 
         // T.W. 4/4 Check time to see if we can count this translate or we have to wait an hour
         checkTimeBeforeCountingTranslate();
-
+        if (lockedOut) {
+            $('#badRequestPopup').show();
+         } else {
         $.ajax({
             url: myURL,
             method: 'GET',
             error: whoops
         }).then(function (response) {
-            console.log("Translate our text");
             playSFX(audioFile);
             // Get our returned translation, set the translated font and display
-            //$('#translated').addClass(fontType);
+            $('#translated').addClass(fontType);
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
 
@@ -217,9 +223,11 @@ $(document).ready(function () {
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
         });
     }
+    }
 
     // Initialize our page, created as a funciton in case we need to do something else in future
     function initPage() {
+        localStorage.setItem ('LockedOut', lockedOut);
         atrributedSites();
     }
 
