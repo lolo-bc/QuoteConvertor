@@ -41,16 +41,22 @@ $(document).ready(function () {
     // T.W. 3/30
     // Resets Translates To 5 After One Hour
     function countDown() {
-        var count = 3600;
+        var counter = 3600;
         var oneHourCountDown = setInterval(function () {
             // console.log("CountDown: " + counter);
             counter--
+            $("#translateCounterText").text("Seconds Until Next Translate: " + counter);
             if (counter === 0) {
                 clearInterval(oneHourCountDown);
                 $("#translateCounter").text(5);
             }
         }, 1000);
     };
+
+    function storeTime() {
+        alert("Yo!")
+        localStorage.setItem("timer", counter);
+    }
 
     randomQuote = $('#randomQuote').val();
 
