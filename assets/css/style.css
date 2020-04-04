@@ -8,14 +8,12 @@ body {
 }
 
 #translateCounterText {
-    opacity: 60%;
     padding:0px;
     margin: 0px;
     cursor: pointer;
 }
 
 #translatedModal {
-    opacity: 60%;
     padding:0px;
     margin: 0px;
 }
@@ -73,6 +71,10 @@ body {
 
 
 #translationsMobileRow {
+    color: white;
+}
+
+#attribute-site {
     color: white;
 }
 
