@@ -68,15 +68,16 @@ $(document).ready(function () {
     //error message for too many API requests, timer set for 1 hour
     function whoops() {
         lockedOut = true;
-        localStorage.setItem ('LockedOut', lockedOut);
+        localStorage.setItem('LockedOut', lockedOut);
         console.log("Error with pulling translation");
         $('#badRequestPopup').show();
         //clearStyles();
         // $('#translated').text("Error! Abort! Abort!");
-        setTimeout(function () { 
-            $('#badRequestPopup').hide(); }, 3600000); // this was 3600000
-            console.log ("Timeout complete: ", lockedOut);
-            lockedOut = false;
+        setTimeout(function () {
+            $('#badRequestPopup').hide();
+        }, 3600000); // this was 3600000
+        console.log("Timeout complete: ", lockedOut);
+        lockedOut = false;
     }
 
     //L.C. 4/2
@@ -120,7 +121,7 @@ $(document).ready(function () {
     function countOurTranslate() {
         if (translationsPerHour === 0) {
             localStorage.setItem("limitTime", currentTime);
-           // countDown(); EXS 4th April 2020  commented line out as countDown() does not exist as a function
+            // countDown(); EXS 4th April 2020  commented line out as countDown() does not exist as a function
             return false;
         }
         else {
@@ -132,10 +133,12 @@ $(document).ready(function () {
     randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
-        console.log ("Getting Quote Locked Out Status: ", lockedOut);
-        if (lockedOut) {
+        var lockedOutStatus = getLockedOutStatus();
+        console.log ("Get Random Quote Button Status: ", lockedOutStatus);
+        if (lockedOutStatus) {
             $('#badRequestPopup').show();
-         } else {        
+            return;
+        }
         $.ajax({
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
@@ -143,18 +146,18 @@ $(document).ready(function () {
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
-        }        
-
     });
 
     // clear our random quote on click
     $('#randomQuote').click(function () {
-        if (lockedOut) {
+        var lockedOutStatus = getLockedOutStatus();
+        console.log ("Random Quopte Body Status: ", lockedOutStatus);
+        if (lockedOutStatus) {
             $('#badRequestPopup').show();
-        } else {
+            return;
+        }
         $('#randomQuote').empty();
         $('#translated').empty();
-        }
     });
 
     // Check on which list item has been clicked on the dropdown
@@ -185,7 +188,7 @@ $(document).ready(function () {
     // function translateOurQuote(randomQuote, translateURL, fontType) {
     function translateOurQuote(translateURL, fontType, audioFile) {
         // Clear any existing CSS font styles.
-        //clearStyles();
+        // clearStyles();
         // Add our new CSS font style class.
 
         // We maybe able to squish the myQuote calculation directly into the myURL calculation
@@ -194,9 +197,11 @@ $(document).ready(function () {
 
         // T.W. 4/4 Check time to see if we can count this translate or we have to wait an hour
         checkTimeBeforeCountingTranslate();
-        if (lockedOut) {
+        lockedOutStatus = getLockedOutStatus();
+        if (lockedOutStatus) {
             $('#badRequestPopup').show();
-         } else {
+            return;
+        }
         $.ajax({
             url: myURL,
             method: 'GET',
@@ -223,11 +228,20 @@ $(document).ready(function () {
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
         });
     }
+
+    function getLockedOutStatus () {
+        lockedStatus = localStorage.getItem('LockedOut');
+        return (lockedStatus);
     }
 
     // Initialize our page, created as a funciton in case we need to do something else in future
     function initPage() {
-        localStorage.setItem ('LockedOut', lockedOut);
+        var lockedOutStatus = getLockedOutStatus();
+        if (lockedOutStatus) {
+            $('#badRequestPopup').show();
+            return;
+        }
+        localStorage.setItem('LockedOut', lockedOut);
         atrributedSites();
     }
 
