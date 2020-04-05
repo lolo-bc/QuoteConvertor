@@ -41,7 +41,6 @@ $(document).ready(function () {
     // EXS 4th April 2020 - Get our current time in Moment, this will be used to see if the saved
     // lockout time has been passed or is still active
     var currentTime = moment().format("HH:mm:ss");
-
     var storedTime = localStorage.getItem("limitTime");
 
     //L.C 4/1
@@ -56,8 +55,7 @@ $(document).ready(function () {
     }
 
     //Add users quotes/translations into the modal and mobile div 
-    //EXS 5th April 2020, merged trnaslationsmobile and modaltext into same for loop
-
+    //EXS 5th April 2020, merged translationsmobile and modaltext into same for loop
     for (i = 0; i < userTranslationsSavedArray.length; i++) {
         var spaceBtwQuotes = $('<li>');
         $('#translationsMobile').append(userTranslationsSavedArray[i]);
@@ -122,7 +120,7 @@ $(document).ready(function () {
     randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
-        $('#translated').empty();
+        // $('#translated').empty();
         var lockedOutStatus = getLockedOutStatus();
         if (lockedOutStatus) {
             $('#badRequestPopup').show();
@@ -141,6 +139,7 @@ $(document).ready(function () {
     $('#randomQuote').click(function () {
         var lockedOutStatus = getLockedOutStatus();
         //console.log ("Random Quote Body Status: ", lockedOutStatus);
+        console.log (lockedOutStatus);
         if (lockedOutStatus) {
             $('#badRequestPopup').show();
             return;
@@ -174,7 +173,6 @@ $(document).ready(function () {
         }
     })
 
-    // function translateOurQuote(randomQuote, translateURL, fontType) {
     function translateOurQuote(translateURL, fontType, audioFile) {
         // Clear any existing CSS font styles.
         clearStyles();
@@ -200,18 +198,14 @@ $(document).ready(function () {
             $('#translated').addClass(fontType);
             var translation = response.contents.translated
             var spaceBtwQuotes2 = $("<br>");
-
             //add quote onto the textarea do
             $("#translated").text(translation);
-
             //add quote into the modal on full web
             $("#modalText").append(translation);
             $("#modalText").append(spaceBtwQuotes2);
-
             //add quote into the row div on mobile
             $("#translationsMobile").append(translation);
             $("#translationsMobile").append(spaceBtwQuotes2);
-
             userTranslationsSavedArray.push(translation)
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
         });
@@ -288,13 +282,13 @@ $(document).ready(function () {
             $('#badRequestPopup').show();
         }
 
-        console.log("Error with pulling translation");
+        //console.log("Error with pulling translation");
         $('#badRequestPopup').show();
         setTimeout(function () {
+             // EXS Clear out our locked time settings once the timeout is up
+            lockedOut = false;
             $('#badRequestPopup').hide();
-        }, 3600000); // this was 3600000
-        console.log("Timeout complete: ", lockedOut);
-        lockedOut = false;
+        }, 3600000);
     }
 
     //L.C. 4/2
