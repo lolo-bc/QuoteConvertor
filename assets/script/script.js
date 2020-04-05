@@ -148,19 +148,20 @@ $(document).ready(function () {
         console.log(this.id);
         switch (this.id) {
             case 'pirateTranslation':
-                translateOurQuote(pirateURL, 'pirateFont', testAudio);
+
+                translateOurQuote(pirateURL, 'pirateFont', piratesAudio);
                 break;
             case 'cockneyTranslation':
-                translateOurQuote(cockneyURL, 'cockneyFont', testAudio);
+                translateOurQuote(cockneyURL, 'cockneyFont', cockneyAudio);
                 break;
             case 'chefTranslation':
-                translateOurQuote(chefURL, 'chefFont', testAudio);
+                translateOurQuote(chefURL, 'chefFont', chefAudio);
                 break;
             case 'oldEnglishTranslation':
-                translateOurQuote(oldEnglishURL, 'oldEngFont', testAudio)
+                translateOurQuote(oldEnglishURL, 'oldEngFont', oldEnglandAudio);
                 break;
-            case 'southernTranslation':
-                translateOurQuote(southernURL, 'cowboyFont', testAudio)
+            case 'fuddTranslation':
+                translateOurQuote(fuddURL, 'cowboyFont', fuddAudio)
                 break;
             default:
                 break;
