@@ -39,14 +39,18 @@ https://saunderseddie.github.io/QuoteConvertor/index.html
 ## Code:
 Developed with HTML5, CSS3, JavaScript, JQuery, and Materialize using Visual Studio Code
 
-## Usage:
-
 ## Credits:
 
 reset.css - Eric Myer https://meyerweb.com/eric/tools/css/reset/<br/>
 translation API - https://funtranslations.com/<br/>
 Quote API - https://favqs.com/api/qotd<br/>
 Materialize - https://materializecss.com/<br/>
+Elma Fudd - https://www.warnerbros.com/company/divisions/television<br/>
+Hamlet - https://www.sonypictures.com/<br/>
+Cockney - https://www.youtube.com/watch?v=1WvIwkL8oLc&t=50s<br/>
+Pirates of the Caribbean - https://pirates.disney.com/<br/>
+Swedish Chef - https://www.henson.com/<br/>
+
 ## Development: <br/>
 
 Lauren Cameron  https://github.com/lolo-bc <br/>
