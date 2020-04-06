@@ -39,8 +39,9 @@ $(document).ready(function () {
 
     // EXS 4th April 2020 - Get our current time in Moment, this will be used to see if the saved
     // lockout time has been passed or is still active
-    var currentTime = moment().format("HH:mm:ss");
-    var storedTime = localStorage.getItem("limitTime");
+    // EXS commented out these two lines for testing
+    //var currentTime = moment().format("HH:mm:ss");
+    //var storedTime = localStorage.getItem("limitTime");
 
     //L.C 4/1
     //get user translations from local strage
@@ -82,30 +83,31 @@ $(document).ready(function () {
     initPage();
 
     // T.W. Check time before display
-    function checkTimeBeforeDisplayingIt() {
-        if (currentTime - storedTime < 1) {
-            $('#translateCounter').text(0);
-        }
-    }
+    // function checkTimeBeforeDisplayingIt() {
+    //     if (currentTime - storedTime < 1) {
+    //         $('#translateCounter').text(0);
+    //     }
+    // }
 
-    checkTimeBeforeDisplayingIt()
+    // checkTimeBeforeDisplayingIt()
 
     // T.W. Checks time to see if it's been over an hour since last translates ran out
-    function checkTimeBeforeCountingTranslate() {
-        if (currentTime - storedTime >= 1) {
-            countOurTranslate();
-        }
-        else {
-            $('#translateCounter').text(0);
-        }
-    };
+    // function checkTimeBeforeCountingTranslate() {
+    //     if (currentTime - storedTime >= 1) {
+    //         countOurTranslate();
+    //     }
+    //     else {
+    //         $('#translateCounter').text(0);
+    //     }
+    // };
 
     // T.W. 3/29
     // Function To Count Each Translate
     function countOurTranslate() {
         if (translationsPerHour === 0) {
-            localStorage.setItem("limitTime", currentTime);
+            //localStorage.setItem("limitTime", currentTime);
             // countDown(); EXS 4th April 2020  commented line out as countDown() does not exist as a function
+            $('#badRequestPopup').show();
             return false;
         }
         else {
@@ -179,7 +181,7 @@ $(document).ready(function () {
         myURL = translateURL + myQuote;
 
         // T.W. 4/4 Check time to see if we can count this translate or we have to wait an hour
-        checkTimeBeforeCountingTranslate();
+        // checkTimeBeforeCountingTranslate();
         lockedOutStatus = getLockedOutStatus();
         if (lockedOutStatus) {
             $('#badRequestPopup').show();
@@ -190,6 +192,7 @@ $(document).ready(function () {
             method: 'GET',
             error: whoops
         }).then(function (response) {
+            countOurTranslate();
             playSFX(audioFile);
             // Get our returned translation, set the translated font and display
             $('#translated').addClass(fontType);
