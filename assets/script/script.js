@@ -73,11 +73,20 @@ $(document).ready(function () {
 
     //L.C. 4/2
     //Click button function to clear local storage 
-    $('.clearQuotesBtn').click(function () {
+    $('#clearQuotesBtn').click(function () {
         localStorage.clear();
         $('modal1').hide();
         location.reload(true);
     })
+
+    //L.C. 4/5
+    //Click button function to clear local storage on mobile 
+    $('#clearQuotesBtn2').click(function () {
+        localStorage.clear();
+        $('modal1').hide();
+        location.reload(true);
+    })
+
 
     // EXS 1st April 2020 - Page initalize
     initPage();
