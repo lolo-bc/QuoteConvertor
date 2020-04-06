@@ -22,9 +22,9 @@ body {
     color:#5c6bc0 !important; 
 }
 
-/* #modalText {
-    font-size: 20px;
-} */
+#modalText {
+    font-size: 25px;
+}
 
 #title{
     padding-bottom: 20px;
@@ -72,6 +72,7 @@ body {
 
 #translationsMobileRow {
     color: white;
+    font-size: 25px;
 }
 
 #attribute-site {
