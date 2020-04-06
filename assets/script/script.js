@@ -36,7 +36,6 @@ $(document).ready(function () {
     var lockedOut = false; // EXS working on solution for clearing text, but retaining locked out message
     var randomQuote = ''
     var translationsPerHour = 5;
-    var spaceBtwQuotes = $('<li>');
 
     // EXS 4th April 2020 - Get our current time in Moment, this will be used to see if the saved
     // lockout time has been passed or is still active
@@ -44,38 +43,36 @@ $(document).ready(function () {
     var storedTime = localStorage.getItem("limitTime");
 
     //L.C 4/1
-    //get user translations from local storage
+    //get user translations from local strage
     var userTranslationsSavedArray = localStorage.getItem('userTranslations');
 
-    //keep from erroring if no translations saved in local storage
-    if (!userTranslationsSavedArray) {
-        userTranslationsSavedArray = [];
-    } else {
-        userTranslationsSavedArray = JSON.parse(userTranslationsSavedArray);
-    }
+        //keep from erroring if no translations saved in local storage
+        if (!userTranslationsSavedArray) {
+            userTranslationsSavedArray = [];
+        } else {
+            userTranslationsSavedArray = JSON.parse(userTranslationsSavedArray);
+        }
 
     //Add users quotes/translations into the modal and mobile div 
-    //EXS 5th April 2020, merged translationsmobile and modaltext into same for loop
+
+    // L.C - separate loops for adding in the translations mobile and the modal translations 
+    //in order for styles to apply correctly
+
     for (i = 0; i < userTranslationsSavedArray.length; i++) {
         var spaceBtwQuotes = $('<li>');
         $('#translationsMobile').append(userTranslationsSavedArray[i]);
         $('#translationsMobile').append(spaceBtwQuotes);
-        $('#translationsMobile').append(spaceBtwQuotes);
+    }
+
+    for (i = 0; i < userTranslationsSavedArray.length; i++) {
+        var spaceBtwQuotes = $("<li>");
         $('#modalText').append(userTranslationsSavedArray[i]);
-        $('#modalText').append(spaceBtwQuotes);
         $('#modalText').append(spaceBtwQuotes);
     }
 
-    // for (i = 0; i < userTranslationsSavedArray.length; i++) {
-    //     var spaceBtwQuotes = $("<li>");
-    //     $('#modalText').append(userTranslationsSavedArray[i]);
-    //     $('#modalText').append(spaceBtwQuotes);
-    //     $('#modalText').append(spaceBtwQuotes);
-    // }
-
     //L.C. 4/2
     //Click button function to clear local storage 
-    $('#clearQuotesBtn').click(function () {
+    $('.clearQuotesBtn').click(function () {
         localStorage.clear();
         $('modal1').hide();
         location.reload(true);
@@ -197,14 +194,18 @@ $(document).ready(function () {
             // Get our returned translation, set the translated font and display
             $('#translated').addClass(fontType);
             var translation = response.contents.translated
+
             var spaceBtwQuotes2 = $("<br>");
+
             //add quote onto the textarea do
             $("#translated").text(translation);
             //add quote into the modal on full web
-            $("#modalText").append(translation);
-            $("#modalText").append(spaceBtwQuotes2);
+
+            $("#modalText").append(translation + "<li>") ;
+
+
             //add quote into the row div on mobile
-            $("#translationsMobile").append(translation);
+            $("#translationsMobile").append(translation + "<li>");
             $("#translationsMobile").append(spaceBtwQuotes2);
             userTranslationsSavedArray.push(translation)
             localStorage.setItem('userTranslations', JSON.stringify(userTranslationsSavedArray));
