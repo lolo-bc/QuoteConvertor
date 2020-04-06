@@ -40,8 +40,9 @@ $(document).ready(function () {
 
     // EXS 4th April 2020 - Get our current time in Moment, this will be used to see if the saved
     // lockout time has been passed or is still active
-    var currentTime = moment().format("HH:mm:ss");
-    var storedTime = localStorage.getItem("limitTime");
+    // EXS commented out these two lines for testing
+    //var currentTime = moment().format("HH:mm:ss");
+    //var storedTime = localStorage.getItem("limitTime");
 
     //L.C 4/1
     //get user translations from local storage
@@ -193,6 +194,7 @@ $(document).ready(function () {
             method: 'GET',
             error: whoops
         }).then(function (response) {
+            countOurTranslate();
             playSFX(audioFile);
             // Get our returned translation, set the translated font and display
             $('#translated').addClass(fontType);
