@@ -6,9 +6,9 @@ A small mobile first application that allows the user to get or enter a random q
 
 ```
 As a user who needs to have quirky and unique
-I want to translate my own text or generate a random quote
-Then have it translated to a language I select and have it saved
-I can then view these translations at any time, even after I have closed the window.
+I want to pull a random quote or translate my own quote
+Then have it translated to a language I select from a drop down menu
+When I refresh or return to the page I wish to still be able to view my translations
 ```
 
 ## API's used
