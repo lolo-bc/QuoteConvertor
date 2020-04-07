@@ -119,7 +119,9 @@ $(document).ready(function () {
     randomQuote = $('#randomQuote').val();
 
     $('#getRandomQuote').click(function () {
-        // $('#translated').empty();
+        console.log ('Get Random Quote');
+        $('#translated').empty();
+        $('#randomQuote').empty();
         var lockedOutStatus = getLockedOutStatus();
         if (lockedOutStatus) {
             $('#badRequestPopup').show();
@@ -129,6 +131,8 @@ $(document).ready(function () {
             url: 'https://favqs.com/api/qotd',
             method: 'GET'
         }).then(function (response) {
+            $('#randomQuote').empty();
+            console.log ("Ajax Quote Return");
             randomQuote = (response.quote.body);
             $('#randomQuote').text(randomQuote);
         });
@@ -136,14 +140,16 @@ $(document).ready(function () {
 
     // clear our random quote on click
     $('#randomQuote').click(function () {
+        console.log ('In Random Quote Text Box');
         var lockedOutStatus = getLockedOutStatus();
         //console.log ("Random Quote Body Status: ", lockedOutStatus);
-        console.log (lockedOutStatus);
+      0// console.log (lockedOutStatus);
         if (lockedOutStatus) {
             $('#badRequestPopup').show();
+            $('#randomQuote').empty();
             return;
         }
-        $('#randomQuote').empty();
+        //$('#randomQuote').empty();
         $('#translated').empty();
     });
 
@@ -216,7 +222,7 @@ $(document).ready(function () {
     }
 
 
-    // Initialize our page, created as a funciton in case we need to do something else in future
+    // Initialize our page, created as a function in case we need to do something else in future
     // Updated EXS 4th April 2020
     // Now checks locked out status at start up.
     // Will also pull locked out time and see if the locked out status can be cleared and saved
@@ -225,7 +231,7 @@ $(document).ready(function () {
         // var lockedOutTime = localStorage.getItem() 
         // here we'll get our locked out time from local storage and decide if we're still locked out or not
         let lockedOutStatus = getLockedOutStatus();
-        console.log (lockedOutStatus);
+        //console.log (lockedOutStatus);
         if (lockedOutStatus) {
             atrributedSites();
             $('#badRequestPopup').show();
@@ -241,10 +247,10 @@ $(document).ready(function () {
         let lockedTime = localStorage.getItem('lockedTime');
         let currentTime = moment().format("HH:mm:ss");
         if (lockedOut) {
-            let a = moment.duration(lockedTime).asMinutes();
-            let b = moment.duration(currentTime).asMinutes();
-            minutesStuff = b-a;
-            console.log (minutesStuff, lockoutDuration);
+            let momLockedTime = moment.duration(lockedTime).asMinutes();
+            let momCurrentTime = moment.duration(currentTime).asMinutes();
+            minutesStuff = momCurrentTime-momLockedTime;
+            //console.log (minutesStuff, lockoutDuration);
             if (minutesStuff > lockoutDuration) {
                 lockedOut = false;
                 localStorage.removeItem('lockedTime');
